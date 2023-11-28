@@ -10,12 +10,7 @@ const Register = () => {
     const [passShow,setPassShow]=useState(false)
     const [cpassShow,setcPassShow]=useState(false)
 
-    const [inpval,setInpVal]=useState({
-        email:"",
-        password:"",
-        Cpassword:""
-    });
- console.log(inpval)
+    const [inpval,setInpVal]=useState({});
     const setVal= (e)=>{
      const {name,value}=e.target;
      setInpVal(()=>{
@@ -26,29 +21,19 @@ const Register = () => {
      })
     };
 
-    useEffect(()=>{
-      fetchUsers()
-    },[])
-  
-    const fetchUsers=()=>{
-       axios
-       .get('http://localhost:5000/register')
-       .then((res)=>{
-        console.log(res.data)
-       })
-    }
+   
 
-const handleRegister=(event)=>{
-    event.preventDefault();
-    axios
-    .post('http://localhost:5000/register',{})
-    .then(()=>{
-    
-    fetchUsers()
-    })
-    .catch((error)=>{
-      console.log("unable to register user")
-    })
+const handleRegister=(e)=>{
+    e.preventDefault()
+    console.log(inpval)
+    fetch("http://localhost:8000/signup/register", {
+        method: "POST",
+        body: JSON.stringify(inpval),
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }).then((data) => data.json()).then((res) => alert(JSON.stringify(res)))
 }
 
    
@@ -61,7 +46,7 @@ const handleRegister=(event)=>{
         <p>Create New Account</p>
      </div>
 
-     <form>
+     <form onSubmit={handleRegister}>
         <div className='form_input'>
            
             <input type='email' value={inpval.email} onChange={setVal} name='email' id='email' placeholder='Mail ID'></input>
@@ -71,7 +56,8 @@ const handleRegister=(event)=>{
         <div className='form_input'>
             
             <div className='two'>
-            <input type={!cpassShow ?'password':"text"} value={inpval.password} onChange={setVal}  name="password" id='password' placeholder='Password'></input>
+            <input type={!cpassShow ?'password':"text"} value={inpval.password}
+             onChange={setVal}  name="password" id='password' placeholder='Password'></input>
             <div className='showpass' onClick={()=>setcPassShow(!cpassShow)}>
                 {!cpassShow ? 'show':"hide"}
             </div>
@@ -87,7 +73,7 @@ const handleRegister=(event)=>{
             </div>
             </div>
            
-           <Link to="/" className='btn' onClick={handleRegister}>Sign up</Link>.         
+           <Link to="/" className='btn' >Sign up</Link>.         
            <p><NavLink to='/'>Sign in</NavLink></p>
            
      </form>

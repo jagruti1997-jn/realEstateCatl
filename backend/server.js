@@ -1,44 +1,19 @@
 const express = require("express");
-const app=express();
-
-require("./db/connection")
 const bodyParser=require('body-parser')
-const bcrypt=require('bcrypt')
-const jwt =require('jsonwebtoken')
-// const router=require("./routes/router")
+const signuproute=require("./routes/signup")
 const cors=require('cors');
-const User=require('./models/userSchema')
-const SECRET_KRY='secretkey'
-
-
-
-const port=8000;
-
-// app.get("/",(req,res)=>{
-//     res.status(201).json("server created")
-// });
-app.use(bodyParser.json())
-app.use(express.json())
+const app=express();
+app.use(bodyParser.json());
 app.use(cors())
-// app.use(router)
-
+app.use("/signup",signuproute)
+const port=8000;
 app.listen(port,()=>{
     console.log("server start at port 8000")
 })
 
 
 
-app.post('/register',async(req,res)=>{
-    try{
-        const {email,password,cpassword}=req.body;
-        const hashedPassword=await bcrypt.hash(password,10)
-        const newUser=new User({email,password:hashedPassword})
-        await newUser.save()
-        res.status(201).json({message:'User created succesfully'})
-    }catch (error){
-        res.status(500).json({error:'error signing up'})
-    }
-})
+
 
 
 // app.get('/register',async (req,res)=>{

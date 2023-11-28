@@ -18,12 +18,16 @@ import Locationinfo from './pages/Locationinfo';
 function App() {
   return (
     <>
+    <Routes>
+
    
-    <BrowserRouter>
+    <Route path="/" element={<Login/>}/>
+      <Route path="/register" element={<Register/>}/>
+      </Routes>
+    {/* <BrowserRouter>
     <SideBar>
      <Routes>
-     <Route path="/" element={<Login/>}/>
-      <Route path="/register" element={<Register/>}/>
+    
             <Route path="/property" element={<Property/>}/>
 
               <Route path='/' element={<NewPage/>}>
@@ -42,7 +46,7 @@ function App() {
            
         </Routes>
         </SideBar>
-  </BrowserRouter>
+  </BrowserRouter> */}
   
     </>
   );

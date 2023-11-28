@@ -1,0 +1,13 @@
+
+POST http://localhost:8000/signup/register
+Accept: application/json
+Content-Type: application/json
+
+
+{
+   
+    "email":"shyam@gmail.com",
+  "password":"123456",
+  "cpassword":"123456"
+
+}
