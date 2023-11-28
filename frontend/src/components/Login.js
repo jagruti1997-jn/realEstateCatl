@@ -66,7 +66,9 @@ const loginUser=(e)=>{
             
             </div>
            </div>
-           <button className='btn' onClick={loginUser}>Login</button>
+           <button className='btn' onClick={loginUser}>
+            
+            Login</button>
            <Link to="/register" className='btn' >Sign up</Link>
            <p>Don't have an Account? <NavLink to='/register'>Sign Up</NavLink></p>
      </form>
