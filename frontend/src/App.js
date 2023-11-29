@@ -24,6 +24,9 @@ function App() {
     <Route path="/" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       </Routes>
+
+
+      
     {/* <BrowserRouter>
     <SideBar>
      <Routes>
@@ -46,8 +49,8 @@ function App() {
            
         </Routes>
         </SideBar>
-  </BrowserRouter> */}
-  
+  </BrowserRouter> 
+   */}
     </>
   );
 }
