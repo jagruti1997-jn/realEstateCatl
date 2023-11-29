@@ -1,29 +1,30 @@
-import React from "react";
-import './App.css'
+import React from 'react'
 
-import Login from "./components/Login"
-import Register from "./components/Register";
-import Home from "./components/Home"
+import { BrowserRouter } from 'react-router-dom';
+import { Routes,Route } from 'react-router-dom';
+import '../App.css'
 
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import AppRoutes from "./components/AppRoutes";
+import SideBar from './SideBar';
+import Property from '../pages/Property'
+import Assistance from '../pages/Assistance';
+import RecievedInterest from '../pages/RecievedInterest';
+import SentInterest from '../pages/SentInterest';
+import PropertyViews from '../pages/PropertyViews';
+import TariffPlan from '../pages/TariffPlan';
+import NewPage from '../pages/NewPage';
+import BasicInfo from '../pages/BasicInfo';
+import PropertyDetails from '../pages/PropertyDetails';
+import GeneralInfo from '../pages/GeneralInfo';
+import Locationinfo from '../pages/Locationinfo';
 
-function App() {
+export default function AppRoutes() {
   return (
-    <>
-    {/* <Routes>
-
-   
-    <Route path="/" element={<Login/>}/>
-      <Route path="/register" element={<Register/>}/>
-      </Routes> */}
+    <div>
 
 
-      
-    <BrowserRouter>
+<BrowserRouter>
     <SideBar>
      <Routes>
-    
             <Route path="/property" element={<Property/>}/>
 
               <Route path='/' element={<NewPage/>}>
@@ -37,15 +38,12 @@ function App() {
             <Route path="/sentinterest" element={<SentInterest/>}/>
             <Route path="/propertyviews" element={<PropertyViews/>}/>
             <Route path="/tariffplan" element={<TariffPlan/>}/>
-            <Route path='/newpage' element={<NewPage/>}/>
 
            
         </Routes>
         </SideBar>
-  </BrowserRouter> 
-  
-    </>
-  );
+  </BrowserRouter>
+    </div>
+  )
 }
 
-export default App;
