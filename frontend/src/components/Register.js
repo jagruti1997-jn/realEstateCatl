@@ -1,7 +1,7 @@
 import React ,{useState,useEffect} from 'react'
 import {NavLink,Link} from 'react-router-dom'
 import './mix.css'
-import axios from 'axios'
+
 
 const Register = () => {
   
@@ -73,7 +73,7 @@ const handleRegister=(e)=>{
             </div>
             </div>
            
-           <Link to="/" className='btn' >Sign up</Link>.         
+           <button className='btn' onSubmit={handleRegister}>Sign up</button>.         
            <p><NavLink to='/'>Sign in</NavLink></p>
            
      </form>
