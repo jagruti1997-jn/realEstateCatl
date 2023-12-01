@@ -1,0 +1,124 @@
+.container{
+    margin-top: 30px;
+    max-width: 950px;
+    padding: 28px;
+    margin: 0 28px;
+    border-radius: 10px;
+    overflow:hidden;
+    background: rgbs(0,0,0,0.2);
+    box-shadow: 0 15px 20px rgba(0,0,0,0.6);
+}
+.content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.input-box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+/* .input-box .details{
+
+} */
+/* .input-box:nth-child(2n){
+    justify-content: end;
+} */
+ 
+.input-box label{
+    width: 90%;
+    font-weight: bold;
+    margin: 5px 0;
+    color: rgb(84, 79, 79);
+}
+.input-box input,.input-box select{
+    height: 30px;
+    width: 90%;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(85, 81, 81);
+}
+
+.button1{
+    display: flex;
+    justify-content: center;
+    
+}
+button{
+    margin-right: 20px;
+    background-color: rgb(140, 209, 219);
+    align-items: center;
+    border: none;
+    color: whitesmoke;
+    
+    
+    justify-content: center;
+    padding: 10px;
+    border-radius: 15px;
+
+}
+button:hover{
+    background-color: rgb(55, 166, 210);
+}
+.button1 button :link{
+    color: whitesmoke;
+}
+
+
+
+/* homepage css*/
+
+nav ul li Nav{
+    list-style-type: none;
+    display: inline;
+    
+    height:50px;
+    
+    width:10%;
+    margin-left:50px;
+   align-items: center;
+   
+  
+    
+}
+
+nav ul li:hover{
+    border-radius: 20px;
+    background-color:rgb(84, 159, 188);
+    height: 50px;
+    padding-bottom: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: whitesmoke;
+    border: none;
+    
+}
+
+
+/* .navigationbar nav ul li{
+    float: left;
+   margin-right: 50px;
+    padding: 8px;
+    color:rgb(112, 110, 110);
+    
+  
+  } */
+
+  .navigationbar{
+    height: 45px;
+    background-color: whitesmoke;
+    justify-content:space-between ;
+  margin-bottom: 20px;
+  padding: 0;
+  
+  }
+  /* .navigationbar ul:hover{
+    margin: 0;
+    padding: 0;
+    list-style:decimal;
+    gap: 70px;
+    list-style: decimal;
+  } */

@@ -35,11 +35,9 @@ const handleRegister=(e)=>{
         }
     }).then((data) => data.json()).then((res) => alert(JSON.stringify(res)))
 }
-
-   
-    return(
+ return(
 <>
-<section>
+<section className='container1'>
     <div className='form_data'>
      <div className='form_heading'>
         <h1>Sign Up</h1>

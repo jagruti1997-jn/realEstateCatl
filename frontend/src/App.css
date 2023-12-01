@@ -42,7 +42,7 @@
   padding: 0;
   text-decoration: none;
 }
-.container{
+.container1{
   display: flex;
 }
 main{
@@ -77,12 +77,12 @@ main{
   gap: 15px;
   transition: all 0.5s;
 }
-.link:hover{
+/* .link:hover{
   /* background: black; */
   /* color: blue;
   transition: all 0.5s; */
 
-} 
+ 
 .active{
   color: blue;
 }
@@ -108,11 +108,13 @@ main{
 
 body{
   margin: 0;
+  
 }
 
 .app-nav{
   height: 80px;
   background-color: lightblue;
+  
 }
 .app-nav ul{
   margin: 0;
@@ -127,31 +129,4 @@ body{
 .index-link{
   color: red;
 }
-.navigationbar{
-  height: 80px;
-  background-color: lightblue;
-  justify-content:space-between ;
 
-
-}
-.navigationbar ul{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  gap: 50px;
-}
-.navigationbar ul li{
-  float: left;
-  margin-top: 6px;
-  margin-left: 60px;
-  margin-right: 20px;
-
-}
-.div1,.div2, .div3, .div4{
-  /* border:1px solid black; */
-  display:flex;
-  justify-content: center;
-  width:60%;
-  margin-left: 10%;
-  gap: 80px;
-}

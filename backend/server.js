@@ -1,11 +1,16 @@
 const express = require("express");
 const bodyParser=require('body-parser')
 const signuproute=require("./routes/signup")
+const signinroute=require("./routes/signin")
+// const users=require("../models/userSchema")
+// const jwt = require("jsonwebtoken");
+// const secret = 'RESTAPI'
 const cors=require('cors');
 const app=express();
 app.use(bodyParser.json());
 app.use(cors())
-app.use("/signup",signuproute)
+app.use("/signup",signuproute)  // http://localhost:8000/signup/register
+app.use("/signin",signinroute)  //http://localhost:8000/signin/login
 const port=8000;
 app.listen(port,()=>{
     console.log("server start at port 8000")

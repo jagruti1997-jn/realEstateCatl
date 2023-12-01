@@ -8,7 +8,7 @@ const Login = () =>{
 
     const [inpval,setInpVal]=useState({
         email:"",
-        password:"",
+        password:""
         
     });
 
@@ -26,6 +26,14 @@ const loginUser=(e)=>{
     e.preventDefault()
 
     const {email, password}=inpval;
+    fetch("http://localhost:8000/signin/login", {
+        method: "POST",
+        body: JSON.stringify(inpval),
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }).then((data) => data.json()).then((res) => alert(JSON.stringify(res)))
 
     if(email === ""){
         alert("please enter your email");
@@ -36,20 +44,25 @@ const loginUser=(e)=>{
       }else if(password.length <6){
         alert("password must be 6 char")
     }else{
-        console.log("user register succesful")
+        console.log("user logged succesful")
     }
+   
 
+}
+
+const validate=(values)=>{
+    
 }
 
     return(
 <>
-<section>
+<section className='container1'>
     <div className='form_data'>
      <div className='form_heading'>
         <h1>Logo</h1>
      </div>
 
-     <form>
+     <form onSubmit={loginUser}>
         <div className='form_input'>
            
             <input type='email'name='email'value={inpval.email} onChange={setVal} id='email' placeholder='User ID'></input>
@@ -66,7 +79,7 @@ const loginUser=(e)=>{
             
             </div>
            </div>
-           <button className='btn' onClick={loginUser}>
+           <button className='btn'>
             
             Login</button>
            <button className='btn'><Link to={"/register"}>sign up</Link></button>

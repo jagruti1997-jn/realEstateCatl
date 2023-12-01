@@ -2,21 +2,22 @@ import React from 'react'
 import { Link,Outlet } from 'react-router-dom'
 export default function Locationinfo() {
   return (
-    <div>
-      <div style={{ marginLeft: "10px", marginTop: "10px", width: "80%", height: "220px" }}>
-      <div className='div1'>
+    <div className='container'>
+      <form>
+      <div className='content'>
+      
 
      
-<div style={{ marginTop: "5px" }}>
-      <label for="Email">Email</label>
+<div className='input-box'>
+      <label for="Email" className='details'>Email</label>
       <br />
       <input name='Email' placeholder='Email' />
     </div>
 
-  <div style={{ marginTop: "10px",marginLeft:"20px" }}>       
-   <label for="City">City</label>
+  <div className='input-box'>       
+   <label for="City" className='details'>City</label>
   <br />
-  <select style={{ width: "200px" }} name="City" placeholder="select City" >
+  <select name="City" placeholder="select City" >
     <option value="select City">select City</option>
     <option value="Hyderabad">Hyderabad</option>
     <option value="warangal">warangal</option>
@@ -24,15 +25,15 @@ export default function Locationinfo() {
     <option value="other">Other</option>
   </select>
   </div>
-</div>
 
-<div className='div1'>
+
+
 
      
-<div style={{ marginTop: "10px"}}>
-<label for="Area">Area</label>
-<br />
-<select style={{ width: "200px" }} name="Area" placeholder="select Area" >
+<div className='input-box'>
+<label for="Area" className='details'>Area</label>
+
+<select  name="Area" placeholder="select Area" >
 <option value="select Area">select Area</option>
   <option value="Telangana">Telangana</option>
   <option value="Ap">Ap</option>
@@ -41,10 +42,10 @@ export default function Locationinfo() {
 </select>
 </div>
 
-<div style={{ marginTop: "10px",marginLeft:"20px" }}>       
- <label for="Pincode">Pincode</label>
+<div className='input-box'>       
+ <label for="Pincode" className='details'>Pincode</label>
 <br />
-<select style={{ width: "200px" }} name="Pincode" placeholder="select Pincode" >
+<select name="Pincode" placeholder="select Pincode" >
   <option value="select Pincode">select Pincode</option>
   <option value="502032">502032</option>
   <option value="506002">506002</option>
@@ -52,43 +53,46 @@ export default function Locationinfo() {
   <option value="other">Other</option>
 </select>
 </div>
-</div>
-<div className='div1'>
+
+
 
      
-      <div style={{ marginTop: "5px" }}>
-            <label for="Address">Address</label>
+      <div className='input-box'>
+            <label for="Address" className='dtails'>Address</label>
             <br />
             <input name='Address' placeholder='Address' />
           </div>
-  <div style={{ marginTop: "5px" }}>
-            <label for="Landmark">Landmark</label>
+  <div className='input-box'>
+            <label for="Landmark" className='details'>Landmark</label>
             <br />
             <input name='Landmark' placeholder='Landmark' />
           </div>
 
-</div>
-<div className='div1'>
+
 
      
-      <div style={{ marginTop: "5px" }}>
-            <label for="Latitude">Latitude</label>
+      <div className='input-box'>
+            <label for="Latitude" className='details'>Latitude</label>
             <br />
             <input name='Latitude' placeholder='Latitude' />
           </div>
-  <div style={{ marginTop: "5px" }}>
-            <label for="Longitude">Longitude</label>
+  <div className='input-box'>
+            <label for="Longitude" className='details'>Longitude</label>
             <br />
             <input name='Longitude' placeholder='Longitude' />
           </div>
 
-</div>
 
 
-      </div>
+
+      </div >
         <Outlet/>
-        <Link style={{background:"skyblue",color:"white",border:"1px solid skyblue"}} to="/generalinfo">Previous</Link>
-<button>Add Property</button>   
+        <div className='button1'>
+        <button><Link  to="/generalinfo" style={{color:'whitesmoke'}}>Previous</Link></button>
+        <button style={{color:'whitesmoke'}}>Add Property</button>
+</div>
+ 
+</form>  
     </div>
   )
 }
