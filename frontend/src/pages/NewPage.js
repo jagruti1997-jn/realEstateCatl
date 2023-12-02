@@ -10,9 +10,9 @@ const NewPage=()=>{
         <div >
 <h2 style={{marginTop:"40px",fontStyle:"normal",color:"lightblue"}}>ADD NEW PROPERTY</h2>
 
- <nav className='navigationbar'  >
+ <nav className='navigationbar'>
 <ul >
-    <li ><NavLink to="/">basic Info</NavLink> </li>
+    <li><NavLink to="/">basic Info</NavLink> </li>
     <li><NavLink  to="/propertydetails">Property Details</NavLink></li>
     <li><NavLink  to="/generalinfo">General Info</NavLink></li>
     <li><NavLink  to="/locationinfo">Location Info</NavLink></li>

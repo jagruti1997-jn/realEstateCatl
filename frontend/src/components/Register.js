@@ -37,7 +37,7 @@ const handleRegister=(e)=>{
 }
  return(
 <>
-<section className='container1'>
+<section className='loginContainer'>
     <div className='form_data'>
      <div className='form_heading'>
         <h1>Sign Up</h1>

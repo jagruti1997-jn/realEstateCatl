@@ -23,14 +23,15 @@ import AppRoutes from "./components/AppRoutes";
 function App() {
   return (
     <>
-    <BrowserRouter>
+    {/* <BrowserRouter>
     <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+       
   </Routes>
-    </BrowserRouter>
+    </BrowserRouter> */}
    
-  {/* <AppRoutes/> */}
+  <AppRoutes/>
 
 
 

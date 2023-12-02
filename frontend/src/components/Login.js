@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {NavLink,Link} from 'react-router-dom'
 import "./mix.css"
+import { useNavigate } from 'react-router-dom'
 const Login = () =>{
 
     const [passShow,setPassShow]=useState(false)
@@ -12,6 +13,9 @@ const Login = () =>{
         
     });
 
+
+
+    const navigate=useNavigate()
     const setVal= (e)=>{
         const {name,value}=e.target;
         setInpVal(()=>{
@@ -56,7 +60,7 @@ const validate=(values)=>{
 
     return(
 <>
-<section className='container1'>
+<section className='loginContainer'>
     <div className='form_data'>
      <div className='form_heading'>
         <h1>Logo</h1>

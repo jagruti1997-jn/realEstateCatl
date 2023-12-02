@@ -71,53 +71,57 @@ button:hover{
 
 /* homepage css*/
 
-nav ul li Nav{
+.navigationbar ul li{
     list-style-type: none;
     display: inline;
     
     height:50px;
     
-    width:10%;
-    margin-left:50px;
+    width:8%;
+    /* margin-left:50px; */
    align-items: center;
    
   
     
-}
+} 
 
-nav ul li:hover{
+.navigationbar ul li:hover{
     border-radius: 20px;
     background-color:rgb(84, 159, 188);
     height: 50px;
-    padding-bottom: 20px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-bottom: 30px;
+    justify-content: space-between;
+     padding-left: 10px;
+    padding-right: 10px; 
     color: whitesmoke;
     border: none;
+    font-size: medium;
+    justify-content: center;
     
-}
+} 
 
 
-/* .navigationbar nav ul li{
-    float: left;
-   margin-right: 50px;
+.navigationbar  ul li{
+    /* float: left; */
+   /* margin-right: 50px; */
     padding: 8px;
     color:rgb(112, 110, 110);
     
   
-  } */
+  } 
 
   .navigationbar{
-    height: 45px;
+    height: 50px;
     background-color: whitesmoke;
-    justify-content:space-between ;
+    justify-content:space-between;
   margin-bottom: 20px;
   padding: 0;
   
   }
-  /* .navigationbar ul:hover{
+  /* .navigationbar  ul:hover{
     margin: 0;
-    padding: 0;
+    padding-left:10px;
+    padding-right: 10px;
     list-style:decimal;
     gap: 70px;
     list-style: decimal;
