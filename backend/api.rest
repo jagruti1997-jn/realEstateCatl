@@ -19,8 +19,22 @@ Content-Type: application/json
 
 {
    
-    "email":"harini@gmail.com",
-  "password": "harini2"
+    "email":"amulyasamala666@gmail.com",
+  "password": "ammu1234"
+  
+
+}
+###
+
+POST http://localhost:8000/posts/
+Accept: application/json
+Content-Type: application/json
+Authorization:test eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE5NjAyOTYsInVzZXIiOiI2NTcwNzk3NmM0ZDIxYjBiNDFhN2Q1ZDEiLCJpYXQiOjE3MDE5NTY2OTZ9.__R50D2aJGZuiNQwaKsbb2yeVigf5yI5kcy_n42TWcA
+
+{
+   
+    "PropertyType":"123",
+  "Negotable": "amulya"
   
 
 }

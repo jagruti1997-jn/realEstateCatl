@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useParams } from 'react-router-dom'
 import "./pages.css"
 export default function PropertyDetails() {
+  const{people,token}=useParams()
   return (
     <div className='container'>
       
@@ -164,8 +165,8 @@ export default function PropertyDetails() {
 <Outlet />
       <div className='button1'>
       
-      <button><Link  to="/" style={{color:'whitesmoke'}}>Previous</Link></button>
-      <button><Link  to="/generalinfo" style={{color:'whitesmoke'}}>Save&Coninue</Link></button>
+      <button><Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`} style={{color:'whitesmoke'}}>Previous</Link></button>
+      <button><Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/generalinfo`} style={{color:'whitesmoke'}}>Save&Coninue</Link></button>
       </div>
 
     </div>

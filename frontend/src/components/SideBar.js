@@ -7,13 +7,18 @@ import { BiSolidUpArrowCircle } from "react-icons/bi";
 import { RxEyeOpen } from "react-icons/rx";
 import { LuTag } from "react-icons/lu";
 import { FaBars } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { IoIosSearch } from "react-icons/io";
+
+import { NavLink, useParams ,Outlet, Link} from "react-router-dom";
 const SideBar=({children})=>{
+    const {people,token}=useParams()
     const [IsOpen,setIsOpen]=useState(true)
     const Toggle=()=>setIsOpen(!IsOpen)
+ 
+        
     const menuItem=[
         {
-            path:"/property",
+            path:"/home/:people/:token",
             name: "Property",
             icon :<RiHome2Line />
         }, {
@@ -64,7 +69,22 @@ const SideBar=({children})=>{
                     ))
                 }
             </div>
-            <main>{children}</main>
+
+
+            <div>
+            <input type="text" placeholder="Search PPD ID" name="search" className="search" style={{marginLeft:"90%",marginTop:"50%"}}/>
+            {/* <button style={{width:"30px",height:"30px",marginLeft:"-40px",border:"none",background:"white"}}><IoIosSearch/></button> */}
+           
+            </div>
+            <div style={{float:"right",marginTop:"0px",marginLeft:"50%"}}>
+                <button className="Addpropertybutton" >
+                   
+                    <Link style={{textDecoration:"none"}} to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`}>+ Add Property
+           </Link> 
+                    
+              </button>
+              </div>
+            <Outlet/>
         </div>
     )
 }

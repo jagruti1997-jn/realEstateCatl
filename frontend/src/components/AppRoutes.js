@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Link, useParams } from 'react-router-dom';
 import { Routes,Route } from 'react-router-dom';
 import '../App.css'
 
@@ -16,33 +16,41 @@ import BasicInfo from '../pages/BasicInfo';
 import PropertyDetails from '../pages/PropertyDetails';
 import GeneralInfo from '../pages/GeneralInfo';
 import Locationinfo from '../pages/Locationinfo';
+import Login from './Login';
+import Register from './Register';
 
 export default function AppRoutes() {
+  const {people,token} =useParams();
+
   return (
     <div>
 
 
-<BrowserRouter>
     <SideBar>
-     <Routes>
-            <Route path="/property" element={<Property/>}/>
+      <Routes>
 
-              <Route path='/' element={<NewPage/>}>
+     {/* <Route path="/" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>  */}
+            <Route path='/home/:people/:token' element={<Property/>}/>
+
+            <Route path='/newpage/:people/:token' element={<NewPage/>}>
                  <Route path='' element={<BasicInfo/>} />
                  <Route path='propertydetails' element={<PropertyDetails/>} />
                  <Route path='generalinfo' element={<GeneralInfo/>} />
                  <Route path='locationinfo' element={<Locationinfo/>} />
               </Route>
-            <Route path="/assistance" element={<Assistance/>}/>
-            <Route path="/recievedinterest" element={<RecievedInterest/>}/>
-            <Route path="/sentinterest" element={<SentInterest/>}/>
-            <Route path="/propertyviews" element={<PropertyViews/>}/>
-            <Route path="/tariffplan" element={<TariffPlan/>}/>
+            <Route path='/assistance' element={<Assistance/>}/>
+            <Route path='/recievedinterest' element={<RecievedInterest/>}/>
+            <Route path='/sentinterest' element={<SentInterest/>}/>
+            <Route path='/propertyviews' element={<PropertyViews/>}/>
+            <Route path='/tariffplan' element={<TariffPlan/>}/> 
 
-           
-        </Routes>
-        </SideBar>
-  </BrowserRouter>
+            </Routes>
+
+          
+</SideBar>
+      
+  
     </div>
   )
 }

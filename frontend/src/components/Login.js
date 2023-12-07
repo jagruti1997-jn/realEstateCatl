@@ -1,21 +1,17 @@
 import React, { useState } from 'react'
-import {NavLink,Link} from 'react-router-dom'
+import {NavLink,Link, useParams} from 'react-router-dom'
 import "./mix.css"
+
 import { useNavigate } from 'react-router-dom'
 const Login = () =>{
 
     const [passShow,setPassShow]=useState(false)
-
-
+    let navigateTo=useNavigate();
     const [inpval,setInpVal]=useState({
         email:"",
         password:""
         
     });
-
-
-
-    const navigate=useNavigate()
     const setVal= (e)=>{
         const {name,value}=e.target;
         setInpVal(()=>{
@@ -37,8 +33,18 @@ const loginUser=(e)=>{
             "Content-Type": "application/json",
             "Accept": "application/json"
         }
-    }).then((data) => data.json()).then((res) => alert(JSON.stringify(res)))
+    }).then((data) => data.json()).then((res) =>  { 
 
+        if(res.status==="success"){
+            const token=res.token
+
+            localStorage.setItem('jsonwebtoken',`test ${token}`)
+          
+            navigateTo(`/home/${encodeURIComponent(res.people)}/${encodeURIComponent(token)}`)
+        }else{
+            navigateTo("/register")
+        }
+    })
     if(email === ""){
         alert("please enter your email");
       }else if(!email.includes("@")){

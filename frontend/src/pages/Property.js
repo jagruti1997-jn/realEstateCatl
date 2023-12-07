@@ -1,9 +1,11 @@
-import React from "react";
-import {Link,NavLink,Outlet} from 'react-router-dom';
+import React, { useState } from "react";
+import {Link,NavLink,Outlet, useParams} from 'react-router-dom';
 import { IoIosSearch } from "react-icons/io";
 import NewPage from "./NewPage";
-import { useNavigate } from "react-router";
+
 const Property=()=>{
+    const {people,token}=useParams()
+
     return (
         <div >
 
@@ -15,11 +17,11 @@ const Property=()=>{
             <div style={{float:"right",marginTop:"-30px"}}>
                 <button className="Addpropertybutton">
                    
-                    <Link style={{textDecoration:"none"}} to={'/'}>+ Add Property
+                    <Link style={{textDecoration:"none"}} to={`/home1/${encodeURIComponent(people)}/${encodeURIComponent(token)}`}>+ Add Property
            </Link> 
                     
-              </button> 
-            {/* <Outlet/> */}
+              </button>
+            <Outlet/>
          </div>
         
        

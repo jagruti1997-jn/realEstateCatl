@@ -1,130 +1,149 @@
-import React from 'react'
-import { Outlet } from 'react-router'
+import React, { useState } from 'react'
+
+import { Outlet, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import PropertyDetails from './PropertyDetails'
 import "./pages.css"
 export default function BasicInfo() {
+  const {people,token}=useParams()
+  const [form, setForm] = useState({
+     PropertyType: "house",
+     Negotable:"1" ,
+     Ownership:"select Ownership",
+     PropertyAge:"select Property Age",
+     PropertyApproved:"select Property Approved",
+     BankLoan:"select Bank Loan"
+
+    })
+    const [data, setData] = useState("")
+    const[toggle,settoggle]=useState(false)
+
+    const submitData = (e) => {
+      e.preventDefault()
+      console.log(form)
+      
+
+    fetch("http://localhost:8000/posts/", {
+        method: "POST",
+        body: JSON.stringify(form),
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization":`test ${token}`
+        }
+    }).then((res) => res.json()).then(
+        (data) => {
+            setData(data)
+            settoggle(!toggle)
+        // const token=res.token
+        // localStorage.setItem('jsonwebtoken',`test ${token}`)
+    alert(JSON.stringify(data))
+})
+  }
+
   return (
-    
-<div className='container'>
-   <form >
-<div className='content'>
- <div className="input-box">
-   <label className="details">Property Type</label>
-   
- <select  name="Property Type" placeholder="select Property Type" >
-    <option value="house">House</option>
-    <option value="flat">Flat</option>
-     <option value="plot">Plot</option>
-     <option value="other">Other</option>
-   </select>
-   </div>
 
-   <div className="input-box">       
-    <label className="details">Negotable</label>
-   
-   <select name="Negotable" placeholder="select Negotable" >
-    <option value="select Negotable">select Negotable</option>
-    <option value="1">1</option>
-     <option value="2">2</option>
-     <option value="3">3</option>
-     <option value="other">Other</option>
-   </select>
-   </div>
- 
+    <div className='container'>
+     <form onSubmit={submitData}>      
+        <div className='content'>
+          <div className="input-box">
+            <label for="PropertyType" className="details">Property Type</label>
 
- 
+            <select name="PropertyType" id="PropertyType" placeholder="select Property Type" onChange={(e) => setForm({ ...form, PropertyType: e.target.value })}>
+              <option value="house">House</option>
+              <option value="flat">Flat</option>
+              <option value="plot">Plot</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
 
+          <div className="input-box">
+            <label for="Negotable" className="details">Negotable</label>
 
-<div className='input-box'>
-<label className='details'>Price</label>
+            <select name="Negotable" id='Negotable' placeholder="select Negotable" onChange={(e) => setForm({ ...form, Negotable: e.target.value })} >
+              <option value="select Negotable">select Negotable</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className='input-box'>
+            <label for="Price" className='details'>Price</label>
 
-<input name='Price' placeholder='Example:10000'/>
- </div>
+            <input name='Price' id='Price' placeholder='Example:10000' onChange={(e) => setForm({ ...form, Price: e.target.value })} />
+          </div>
 
-<div className='input-box' >       
-<label className='details'>Ownership</label>
-<br />
-<select  name="Ownership" placeholder="select Ownership" >
-<option value="select Ownership">select Ownership</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="other">Other</option>
-</select>
- </div>
+          <div className='input-box' >
+            <label for="Ownership" className='details'>Ownership</label>
+            <br />
+            <select name="Ownership" id='Ownership' placeholder="select Ownership" onChange={(e) => setForm({ ...form, Ownership: e.target.value })}>
+              <option value="select Ownership">select Ownership</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className='input-box'>
+            <label for="PropertyAge" className='details'>Property Age</label>
 
+            <select name="PropertyAge" id='PropertyAge' placeholder="select Property Age" onChange={(e) => setForm({ ...form, PropertyAge: e.target.value })}>
+              <option value="select Property Age"></option>
 
+              <option value="house">House</option>
+              <option value="flat">Flat</option>
+              <option value="plot">Plot</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className='input-box'>
+            <label for="PropertyApproved" className='details'>Property Approved</label>
 
+            <select name="PropertyApproved" id='PropertyApproved' placeholder="select Property Approved" onChange={(e) => setForm({ ...form, PropertyApproved: e.target.value })} >
+              <option value="select Property Approved">select Property Approved</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className='input-box'>
+            <label for="PropertyDescription"  className='details'> Property Description</label>
 
- <div className='input-box'>
- <label className='details'>Property Age</label>
+            <input name='PropertyDescription' id='PropertyDescription' placeholder='' onChange={(e) => setForm({ ...form, PropertyDescription: e.target.value })} />
+          </div>
 
- <select  name="Property Age" placeholder="select Property Age" >
- <option value="select Property Age"></option>
+          <div className='input-box'>
+            <label for="BankLoan" classNmae="details">Bank Loan</label>
 
- <option value="house">House</option>
- <option value="flat">Flat</option>
- <option value="plot">Plot</option>
-  <option value="other">Other</option>
-</select>
+            <select name="BankLoan" id='BankLoan' placeholder="select Bank Loan" onChange={(e) => setForm({ ...form, BankLoan: e.target.value })}>
+              <option value="select Bank Loan">Bank Loan</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div className='button1'>
+
+<button style={{ color: 'whitesmoke' }}>Cancel</button>
+<button type="submit" ><Link to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/propertydetails`} style={{ color: 'whitesmoke' }} >Save&Coninue</Link></button>
 </div>
+      </form>
+      <Outlet />
 
-<div className='input-box'>       
-<label className='details'>Property Approved</label>
-
- <select  name="Property Approved" placeholder="select Property Approved" >
-<option value="select Property Approved">select Property Approved</option>
-<option value="1">1</option>
- <option value="2">2</option>
-<option value="3">3</option>
- <option value="other">Other</option>
- </select>
- </div>
-
-
-
-<div className='input-box'>
-<label className='details'> Property Description</label>
-
- <input name='Description' placeholder=''/>
- </div>
-
- <div className='input-box'>       
- <label classNmae="details">Bank Loan</label>
-
- <select  name="Bank Loan" placeholder="select Bank Loan" >
- <option value="select Bank Loan">Bank Loan</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="other">Other</option>
-</select>
-</div>
-</div> 
- </form>
- <Outlet />
-
-<div className='button1'>
-
- <button style={{color:'whitesmoke'}}>Cancel</button>
- <button><Link to="/propertydetails" style={{color:'whitesmoke'}} >Save&Coninue</Link></button>
- </div>
- 
-
-        
-      </div>
     
+      {
+                data.status === "success" && <div style={{ color: "green" }}>ADDED SUCCESSFULLY</div>
+            }{
+                data.status === "failed" && <div style={{ color: "red" }}> FAILED</div>
+
+            }
 
 
-
+    </div>
   )
-}
-
-
-
-
-
-
-
+          }
 
