@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Outlet } from 'react-router'
 import { Link } from 'react-router-dom'
 import PropertyDetails from './PropertyDetails'
 import "./pages.css"
 export default function BasicInfo() {
+  
+   
+  
   return (
     
 <div className='container'>
@@ -73,7 +76,7 @@ export default function BasicInfo() {
 <div className='input-box'>       
 <label className='details'>Property Approved</label>
 
- <select  name="Property Approved" placeholder="select Property Approved" >
+<select  name="Property Approved" placeholder="select Property Approved" >
 <option value="select Property Approved">select Property Approved</option>
 <option value="1">1</option>
  <option value="2">2</option>
@@ -119,8 +122,8 @@ export default function BasicInfo() {
 
 
   )
-}
 
+  }
 
 
 

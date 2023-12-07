@@ -1,6 +1,31 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Link,Outlet } from 'react-router-dom'
 export default function Locationinfo() {
+  const [inpval,setInpVal]=useState({});
+  const setVal= (e)=>{
+    
+   const {name,value}=e.target;
+   setInpVal(()=>{
+      return{
+          ...inpval,
+          [name]:value
+      }
+   })
+   console.log(e.target.value)
+  };
+  
+  //for select values
+  const [select,setSelect]=useState({
+  City:"pune",
+  Area:"parkG",
+  Pincode:42315,
+
+
+  })
+
+
+
+
   return (
     <div className='container'>
       <form>
@@ -11,13 +36,13 @@ export default function Locationinfo() {
 <div className='input-box'>
       <label for="Email" className='details'>Email</label>
       <br />
-      <input name='Email' placeholder='Email' />
+      <input name='Email' placeholder='Email' value={inpval.Email} onChange={setVal}/>
     </div>
 
   <div className='input-box'>       
    <label for="City" className='details'>City</label>
   <br />
-  <select name="City" placeholder="select City" >
+  <select name="City" placeholder="select City" onChange={(e)=>setSelect({...select,City:e.target.value})}>
     <option value="select City">select City</option>
     <option value="Hyderabad">Hyderabad</option>
     <option value="warangal">warangal</option>
@@ -33,7 +58,7 @@ export default function Locationinfo() {
 <div className='input-box'>
 <label for="Area" className='details'>Area</label>
 
-<select  name="Area" placeholder="select Area" >
+<select  name="Area" placeholder="select Area"  onChange={(e)=>setSelect({...select,Area:e.target.value})}>
 <option value="select Area">select Area</option>
   <option value="Telangana">Telangana</option>
   <option value="Ap">Ap</option>
@@ -45,7 +70,7 @@ export default function Locationinfo() {
 <div className='input-box'>       
  <label for="Pincode" className='details'>Pincode</label>
 <br />
-<select name="Pincode" placeholder="select Pincode" >
+<select name="Pincode" placeholder="select Pincode" onChange={(e)=>setSelect({...select,Pincode:e.target.value})} >
   <option value="select Pincode">select Pincode</option>
   <option value="502032">502032</option>
   <option value="506002">506002</option>
@@ -60,12 +85,12 @@ export default function Locationinfo() {
       <div className='input-box'>
             <label for="Address" className='dtails'>Address</label>
             <br />
-            <input name='Address' placeholder='Address' />
+            <input name='Address' placeholder='Address' value={inpval.Address} onChange={setVal}/>
           </div>
   <div className='input-box'>
             <label for="Landmark" className='details'>Landmark</label>
             <br />
-            <input name='Landmark' placeholder='Landmark' />
+            <input name='Landmark' placeholder='Landmark' value={inpval.Landmark} onChange={setVal}/>
           </div>
 
 
@@ -74,12 +99,12 @@ export default function Locationinfo() {
       <div className='input-box'>
             <label for="Latitude" className='details'>Latitude</label>
             <br />
-            <input name='Latitude' placeholder='Latitude' />
+            <input name='Latitude' placeholder='Latitude' value={inpval.Latitude} onChange={setVal}/>
           </div>
   <div className='input-box'>
             <label for="Longitude" className='details'>Longitude</label>
             <br />
-            <input name='Longitude' placeholder='Longitude' />
+            <input name='Longitude' placeholder='Longitude' value={inpval.Longitude} onChange={setVal} />
           </div>
 
 

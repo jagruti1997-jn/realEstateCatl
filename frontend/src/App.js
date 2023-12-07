@@ -3,7 +3,7 @@ import './App.css'
 
 import Login from "./components/Login"
 import Register from "./components/Register";
-import Home from "./components/Home"
+
 import PropertyDetails from "./pages/PropertyDetails";
 import BasicInfo from "./pages/BasicInfo";
 import GeneralInfo from "./pages/GeneralInfo";

@@ -25,10 +25,10 @@ export default function AppRoutes() {
 <BrowserRouter>
     <SideBar>
      <Routes>
-            <Route path="/property" element={<Property/>}/>
+            <Route path="/Property" element={<Property/>}/>
 
               <Route path='/' element={<NewPage/>}>
-                 <Route path='' element={<BasicInfo/>} />
+                 <Route path='/' element={<BasicInfo/>} />
                  <Route path='propertydetails' element={<PropertyDetails/>} />
                  <Route path='generalinfo' element={<GeneralInfo/>} />
                  <Route path='locationinfo' element={<Locationinfo/>} />
