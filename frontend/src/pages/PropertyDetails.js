@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Outlet } from 'react-router'
-import { Link,useParams,useNavigate} from "react-router-dom";
+import { Link,useParams,useNavigate,useLocation} from "react-router-dom";
 import "./pages.css"
 export default function PropertyDetails() {
   let navigateTo=useNavigate();
-  const {people,token}=useParams()
-  const{postsID}=useParams();
+  const location = useLocation();
+  const ID=location.state
+  const {people,token,postsID}=useParams()
   const [form, setForm] = useState({
     AreaUnit: "1",
     NoofBHK:"2" ,
@@ -22,16 +23,17 @@ export default function PropertyDetails() {
     const[toggle,settoggle]=useState(false)
     const submitData = (e) => {
       e.preventDefault()
-      localStorage.setItem('postsid',`${postsID}`)
+      localStorage.getItem('postsID',`${postsID}`)
 console.log(people)
-console.log(postsID)
-    fetch(`http://localhost:8000/posts/${postsID}`, {
+console.log(ID)
+    fetch(`http://localhost:8000/posts/${ID}`, {
         method: "PUT",
         body: JSON.stringify(form),
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Authorization":`test ${token}`
+            "Authorization":`test ${token}`,
+            "keys":`${postsID}`
         }
     }).then((res) => res.json()).then(
         (data) => {
@@ -39,7 +41,6 @@ console.log(postsID)
             settoggle(!toggle)
       
         localStorage.setItem('jsonwebtoken',`test ${token}`)
-        localStorage.setItem('postsid',`${postsID}`)
         if(data.status==="success"){
           const postsID=data.postsId
           console.log(form)

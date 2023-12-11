@@ -38,15 +38,16 @@ export default function BasicInfo() {
             settoggle(!toggle)
         //     const people=data.people
         // const token=data.token
-        const postsID=data.postsId
+       
         localStorage.setItem('jsonwebtoken',`test ${token}`)
-        localStorage.setItem('postsid',`${postsID}`)
+        const postsID=data.postsId
+        localStorage.setItem('postsID',`${postsID}`)
+        console.log(people,token,postsID)
 
         if(data.status==="success"){
           alert( JSON.stringify(form))
-                  console.log(people,token,postsID)
 
-          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`)
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`,{state: postsID})
         }else{
           alert("data is not gone into database")
 
