@@ -1,18 +1,60 @@
-import React from 'react'
-import { Link,Outlet, useParams } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link,Outlet,useParams,useNavigate,useLocation} from 'react-router-dom'
 export default function GeneralInfo() {
-  const {people,token,postsId}=useParams()
+  let navigateTo=useNavigate();
+  const location = useLocation();
+  const ID=location.state
+  const {people,token,postsID}=useParams()
+  const [form, setForm] = useState({
+    Name: "Owner",
+    PostedBy:"amulya" ,
+    SaleType:"1",
+    FeaturedPackage:"house",
+    PPDPackage:"1",
+    })
+    const [data, setData] = useState("")
+    const[toggle,settoggle]=useState(false)
+    const submitData = (e) => {
+      e.preventDefault()
+      localStorage.getItem('postsID',`${postsID}`)
+      console.log(people)
+      console.log(ID)
+    fetch(`http://localhost:8000/posts/${ID}`, {
+        method: "PUT",
+        body: JSON.stringify(form),
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization":`test ${token}`
+        }
+    }).then((res) => res.json()).then(
+        (data) => {
+            setData(data)
+            settoggle(!toggle)
+      
+        localStorage.setItem('jsonwebtoken',`test ${token}`)
+        if(data.status==="success"){
+          const postsID=data.postsId
+          console.log(form)
+
+          alert( JSON.stringify(form))
+          
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/locationinfo`,{state: ID})
+        }else{
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`,{state: ID})
+
+        }
+})
+  } 
   return (
     <div className='container'>
       
-        <form>
+        <form onSubmit={submitData}>
           <div className='content'>
-
-      
             <div className='input-box'>
               <label for="Name" className='details'>Name</label>
               <br />
-              <select  name="name" placeholder="" >
+              <select  name="Name" placeholder="" onChange={(e) => setForm({ ...form, Name: e.target.value })} >
                 <option value="Owner">Owner</option>
                 <option value="tenent">tenent</option>
                 <option value="other">Other</option>
@@ -22,15 +64,15 @@ export default function GeneralInfo() {
             <div className='input-box'>
               <label for="Mobile" className='details'>Mobile</label>
               <br />
-              <input name='Mobile' placeholder='Enter Mobile Number' />
+              <input name='Mobile' placeholder='Enter Mobile Number' onChange={(e) => setForm({ ...form, Mobile: e.target.value })} />
             </div>
      
 
      
 <div className='input-box'>
-<label for="Posted by" className='details'>Posted by</label>
+<label for="PostedBy" className='details'>Posted by</label>
 <br />
-<select name="Posted by" placeholder="select Posted by" >
+<select name="PostedBy" placeholder="select Posted by" onChange={(e) => setForm({ ...form, PostedBy: e.target.value })}>
 <option value="select Posted by">Posted by</option>
   <option value="amulya">amulya</option>
   <option value="jagruti">jagruti</option>
@@ -39,9 +81,9 @@ export default function GeneralInfo() {
 </div>
 
 <div className='input-box'>       
- <label for="Sale Type" className='details'>Sale Type</label>
+ <label for="SaleType" className='details'>Sale Type</label>
 
-<select  name="Sale Type" placeholder="select Sale Type" >
+<select  name="SaleType" placeholder="select Sale Type" onChange={(e) => setForm({ ...form, SaleType: e.target.value })}>
   <option value="select Sale Type">Please select</option>
   <option value="1">1</option>
   <option value="2">2</option>
@@ -49,17 +91,11 @@ export default function GeneralInfo() {
   <option value="other">Other</option>
 </select>
 </div>
-
-
-
-
-
-
      
 <div className='input-box'>
-<label for="Featured Package" className='details'>Featured Package</label>
+<label for="FeaturedPackage" className='details'>Featured Package</label>
 <br />
-<select  name="Featured Package" placeholder="select Featured Package" >
+<select  name="FeaturedPackage" placeholder="select Featured Package" onChange={(e) => setForm({ ...form, FeaturedPackage: e.target.value })}>
 <option value="select Featured Package">Please select</option>
   <option value="house">House</option>
   <option value="flat">Flat</option>
@@ -69,9 +105,9 @@ export default function GeneralInfo() {
 </div>
 
 <div className='input-box'>       
- <label for="PPD Package" className='details'>PPD Package</label>
+ <label for="PPDPackage" className='details'>PPD Package</label>
 <br />
-<select  name="PPD Package" placeholder="select PPD Package" >
+<select  name="PPDPackage" placeholder="select PPD Package" onChange={(e) => setForm({ ...form, PPDPackage: e.target.value })}>
   <option value="select PPD Package">Please select</option>
   <option value="1">1</option>
   <option value="2">2</option>
@@ -82,13 +118,21 @@ export default function GeneralInfo() {
 
 
 </div>
+<div className='button1'> 
+   <button>Previous</button>
+    <button> Save&Coninue</button>  
+     </div>
+ 
 </form>
    
 <Outlet/>
-<div className='button1'> 
-   <button>  <Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsId)}/propertyDetails`} style={{color:'whitesmoke'}}>Previous</Link></button>
-    <button>   <Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsId)}/locationinfo`} style={{color:'whitesmoke'}}>Save&Coninue</Link></button>   </div>
- 
-    </div>
+{
+                data.status === "success" && <div style={{ color: "green" }}>ADDED SUCCESSFULLY</div>
+            }{
+                data.status === "failed" && <div style={{ color: "red" }}> FAILED</div>
+
+            }
+</div>
+
   )
 }

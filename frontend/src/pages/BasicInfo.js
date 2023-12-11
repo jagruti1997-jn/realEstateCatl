@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 
 import { Outlet } from 'react-router'
-import { Link,useParams,useNavigate} from "react-router-dom";
+import { Link,useParams,useNavigate,useLocation} from "react-router-dom";
 import PropertyDetails from './PropertyDetails'
 import "./pages.css"
 export default function BasicInfo() {
   let navigateTo=useNavigate();
+  const location = useLocation();
+  const ID=location.state
   const {people,token}=useParams()
   const [form, setForm] = useState({
      PropertyType: "house",
