@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useParams } from 'react-router-dom'
 import "./pages.css"
 export default function PropertyDetails() {
-//for input values
-const [inpval,setInpVal]=useState({});
+  const {people,token}=useParams()
+
+  const[toggle,settoggle]=useState(false)
+  const [inpval,setInpVal]=useState({});
 const setVal= (e)=>{
-  
+ 
  const {name,value}=e.target;
+
  setInpVal(()=>{
     return{
         ...inpval,
@@ -18,18 +21,13 @@ const setVal= (e)=>{
 
 //for select values
 const [select,setSelect]=useState({
-  AreaUnit:2,
-  NoofBHK:2,
-  Nooffloor:4,
-  Attached:"yes",
-  Furnished:"yes",
-  WesternToilet:2,
-  CarParking:3,
-  Lift:2,
-  Facing:"north"
+  PropertyType: "house",
+     Negotable:"1" ,
+     Ownership:"select Ownership",
+     PropertyAge:"select Property Age",
+     PropertyApproved:"select Property Approved",
+     BankLoan:"select Bank Loan"
 })
-
-
   return (
     <div className='container'>
       
@@ -192,8 +190,8 @@ const [select,setSelect]=useState({
 <Outlet />
       <div className='button1'>
       
-      <button><Link  to="/" style={{color:'whitesmoke'}}>Previous</Link></button>
-      <button><Link  to="/generalinfo" style={{color:'whitesmoke'}}>Save&Coninue</Link></button>
+      <button><Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`} style={{color:'whitesmoke'}}>Previous</Link></button>
+      <button><Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/generalinfo`} style={{color:'whitesmoke'}}>Save&Coninue</Link></button>
       </div>
 
     </div>

@@ -1,31 +1,35 @@
-import React,{useState,useEffect} from 'react'
-import { Link,Outlet } from 'react-router-dom'
+
+import React ,{useState}from 'react'
+import { Link,Outlet,useParams } from 'react-router-dom'
 export default function Locationinfo() {
+  const {people,token}=useParams()
+
+  const[toggle,settoggle]=useState(false)
   const [inpval,setInpVal]=useState({});
-  const setVal= (e)=>{
-    
-   const {name,value}=e.target;
-   setInpVal(()=>{
-      return{
-          ...inpval,
-          [name]:value
-      }
-   })
-   console.log(e.target.value)
-  };
+const setVal= (e)=>{
   
-  //for select values
-  const [select,setSelect]=useState({
-  City:"pune",
-  Area:"parkG",
-  Pincode:42315,
+ const {name,value}=e.target;
+ setInpVal(()=>{
+    return{
+        ...inpval,
+        [name]:value
+    }
+ })
+ console.log(e.target.value)
+};
 
-
-  })
-
-
-
-
+//for select values
+const [select,setSelect]=useState({
+  Email:"pooja@gmail.com",
+  NoofBHK:2,
+  Nooffloor:4,
+  Attached:"yes",
+  Furnished:"yes",
+  WesternToilet:2,
+  CarParking:3,
+  Lift:2,
+  Facing:"north"
+})
   return (
     <div className='container'>
       <form>
@@ -113,7 +117,7 @@ export default function Locationinfo() {
       </div >
         <Outlet/>
         <div className='button1'>
-        <button><Link  to="/generalinfo" style={{color:'whitesmoke'}}>Previous</Link></button>
+        <button><Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/generalinfo`} style={{color:'whitesmoke'}}>Previous</Link></button>
         <button style={{color:'whitesmoke'}}>Add Property</button>
 </div>
  

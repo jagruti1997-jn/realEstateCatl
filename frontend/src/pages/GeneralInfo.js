@@ -1,36 +1,34 @@
-import React, { useState } from 'react'
-import { Link,Outlet } from 'react-router-dom'
+import React ,{useState}from 'react'
+import { Link,Outlet ,useParams} from 'react-router-dom'
+
+
 export default function GeneralInfo() {
-  //for input values
+  const {people,token}=useParams()
+
+  const[toggle,settoggle]=useState(false)
   const [inpval,setInpVal]=useState({});
-  const setVal= (e)=>{
-    
-   const {name,value}=e.target;
-   setInpVal(()=>{
-      return{
-          ...inpval,
-          [name]:value
-      }
-   })
-   console.log(e.target.value)
-  };
-  
-  //for select values
-  const [select,setSelect]=useState({
-    name:"building",
-    Postedby:"alex",
-    SaleType:"1",
-    FeaturedPackage:"house",
-    PPDPackage:"4"
+const setVal= (e)=>{
+ 
+ const {name,value}=e.target;
 
-  })
+ setInpVal(()=>{
+    return{
+        ...inpval,
+        [name]:value
+    }
+ })
+ console.log(e.target.value)
+};
 
-
-
-
-
-
-
+//for select values
+const [select,setSelect]=useState({
+  PropertyType: "house",
+     Negotable:"1" ,
+     Ownership:"select Ownership",
+     PropertyAge:"select Property Age",
+     PropertyApproved:"select Property Approved",
+     BankLoan:"select Bank Loan"
+})
   return (
     <div className='container'>
       
@@ -39,7 +37,7 @@ export default function GeneralInfo() {
 
       
             <div className='input-box'>
-              <label for="Name" className='details'>Name</label>
+              <label for="name" className='details'>Name</label>
               <br />
               <select  name="name" placeholder="" onChange={(e)=>setSelect({...select,name:e.target.value})} >
                 <option value="Owner">Owner</option>
@@ -57,7 +55,7 @@ export default function GeneralInfo() {
 
      
 <div className='input-box'>
-<label for="Posted by" className='details'>Posted by</label>
+<label for="Postedby" className='details'>Posted by</label>
 <br />
 <select name="Postedby" placeholder="select Posted by" onChange={(e)=>setSelect({...select,Postedby:e.target.value})}>
 <option value="select Posted by">Posted by</option>
@@ -86,7 +84,7 @@ export default function GeneralInfo() {
 
      
 <div className='input-box'>
-<label for="Featured Package" className='details'>Featured Package</label>
+<label for="FeaturedPackage" className='details'>Featured Package</label>
 <br />
 <select  name="FeaturedPackage" placeholder="select Featured Package" >
 <option value="select Featured Package" onChange={(e)=>setSelect({...select,FeaturedPackage:e.target.value})}>Please select</option>
@@ -115,8 +113,8 @@ export default function GeneralInfo() {
    
 <Outlet/>
 <div className='button1'> 
-   <button>  <Link  to="/propertydetails" style={{color:'whitesmoke'}}>Previous</Link></button>
-    <button>   <Link  to="/locationinfo" style={{color:'whitesmoke'}}>Save&Coninue</Link></button>   </div>
+   <button>  <Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/propertydetails`} style={{color:'whitesmoke'}}>Previous</Link></button>
+    <button>   <Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/locationinfo`} style={{color:'whitesmoke'}}>Save&Coninue</Link></button>   </div>
  
     </div>
   )
