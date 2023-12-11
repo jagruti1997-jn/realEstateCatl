@@ -34,11 +34,25 @@ router.post("/", async (req, res) => {
         PropertyApproved: req.body.PropertyApproved,
         PropertyDescription: req.body.PropertyDescription,
         BankLoan: req.body.BankLoan,
+        Length: req.body.Length,
+        Breadth:req.body.Breadth,
+        TotalArea:req.body.TotalArea,
+        AreaUnit:req.body.AreaUnit,
+        NoofBHK:req.body.NoofBHK,
+        NoofFloor:req.body.NoofFloor,
+        Attached:req.body.Attached,
+        WesternToilet:req.body.WesternToilet,
+        Furnished:req.body.Furnished,
+        CarParking:req.body.CarParking,
+        Lift:req.body.Lift,
+        Electricity:req.body.Electricity,
+        Facing:req.body.Facing,
         user: req.user
     });
     res.json({
         status: "success",
-        posts:posts
+        posts:posts,
+        postsId:posts._id
 
         // title:posts.title,
         // image:posts.image
@@ -46,11 +60,18 @@ router.post("/", async (req, res) => {
 })
 router.put("/:id", async (req, res) => {
     try {
-        const posts = await Post.updateOne({ _id: req.params.id }, { body: req.body.body }, { runValidators: true });
+        const posts = await Post.updateMany({ _id: req.params.id },
+           { $set: { Length: req.body.Length , Breadth: req.body.Breadth , TotalArea: req.body.TotalArea ,
+              AreaUnit: req.body.AreaUnit , NoofBHK: req.body.NoofBHK , NoofFloor: req.body.NoofFloor ,
+              Attached: req.body.Attached , WesternToilet: req.body.WesternToilet , Furnished: req.body.Furnished,
+             CarParking: req.body.CarParking , Lift: req.body.Lift 
+             , Electricity: req.body.Electricity , Facing: req.body.Facing ,
+             runValidators: true }});
         res.json({
             status: "success",
-            posts
-        })
+            posts:posts,
+            postsId:posts._id
+               })
 
     } catch (e) {
         res.status(500).json({

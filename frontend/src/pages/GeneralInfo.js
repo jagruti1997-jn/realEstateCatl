@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link,Outlet, useParams } from 'react-router-dom'
 export default function GeneralInfo() {
-  const {people,token}=useParams()
+  const {people,token,postsId}=useParams()
   return (
     <div className='container'>
       
@@ -86,8 +86,8 @@ export default function GeneralInfo() {
    
 <Outlet/>
 <div className='button1'> 
-   <button>  <Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/propertydetails`} style={{color:'whitesmoke'}}>Previous</Link></button>
-    <button>   <Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/locationinfo`} style={{color:'whitesmoke'}}>Save&Coninue</Link></button>   </div>
+   <button>  <Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsId)}/propertyDetails`} style={{color:'whitesmoke'}}>Previous</Link></button>
+    <button>   <Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsId)}/locationinfo`} style={{color:'whitesmoke'}}>Save&Coninue</Link></button>   </div>
  
     </div>
   )

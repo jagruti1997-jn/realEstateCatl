@@ -6,9 +6,9 @@ Content-Type: application/json
 
 {
    
-    "email":"hhhhhhh@gmail.com",
-  "password":"123456",
-  "Cpassword":"123456"
+    "email":"nagamani@gmail.com",
+  "password":"nagamani1234",
+  "Cpassword":"nagamani1234"
 
 }
 ###
@@ -19,8 +19,8 @@ Content-Type: application/json
 
 {
    
-    "email":"amulyasamala666@gmail.com",
-  "password": "ammu1234"
+  "email":"nagamani@gmail.com",
+  "password":"nagamani1234"
   
 
 }
@@ -29,12 +29,22 @@ Content-Type: application/json
 POST http://localhost:8000/posts/
 Accept: application/json
 Content-Type: application/json
-Authorization:test eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE5NjAyOTYsInVzZXIiOiI2NTcwNzk3NmM0ZDIxYjBiNDFhN2Q1ZDEiLCJpYXQiOjE3MDE5NTY2OTZ9.__R50D2aJGZuiNQwaKsbb2yeVigf5yI5kcy_n42TWcA
-
+Authorization: test eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxMzY3NTYsInVzZXIiOiI2NTc0N2Q4YmI0NWM0OGE0MDA0NTM2ODciLCJpYXQiOjE3MDIxMzMxNTZ9.deEHYGiTVVWLeDx7WofyASikRq7EVPWUeIn5yo-a-xQ
 {
    
-    "PropertyType":"123",
-  "Negotable": "amulya"
+    "PropertyType":"janvika",
+  "Negotable": "bahgre"
   
 
+}
+###
+POST http://localhost:8000/posts/6576b79054ebf8a07df8043a
+Accept: application/json
+Content-Type: application/json
+Authorization: test eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxMzY3NTYsInVzZXIiOiI2NTc0N2Q4YmI0NWM0OGE0MDA0NTM2ODciLCJpYXQiOjE3MDIxMzMxNTZ9.deEHYGiTVVWLeDx7WofyASikRq7EVPWUeIn5yo-a-xQ
+
+
+{
+    "Breadth":"30",
+    "TotalArea":"600"
 }

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-import { Outlet, useParams } from 'react-router'
-import { Link } from 'react-router-dom'
+import { Outlet } from 'react-router'
+import { Link,useParams,useNavigate} from "react-router-dom";
 import PropertyDetails from './PropertyDetails'
 import "./pages.css"
 export default function BasicInfo() {
+  let navigateTo=useNavigate();
   const {people,token}=useParams()
   const [form, setForm] = useState({
      PropertyType: "house",
@@ -23,7 +24,7 @@ export default function BasicInfo() {
       console.log(form)
       
 
-    fetch("http://localhost:8000/posts/", {
+    fetch(`http://localhost:8000/posts/`, {
         method: "POST",
         body: JSON.stringify(form),
         headers: {
@@ -35,9 +36,21 @@ export default function BasicInfo() {
         (data) => {
             setData(data)
             settoggle(!toggle)
-        // const token=res.token
-        // localStorage.setItem('jsonwebtoken',`test ${token}`)
-    alert(JSON.stringify(data))
+        //     const people=data.people
+        // const token=data.token
+        const postsID=data.postsId
+        localStorage.setItem('jsonwebtoken',`test ${token}`)
+        localStorage.setItem('postsid',`${postsID}`)
+
+        if(data.status==="success"){
+          alert( JSON.stringify(form))
+                  console.log(people,token,postsID)
+
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`)
+        }else{
+          alert("data is not gone into database")
+
+        }
 })
   }
 
@@ -129,7 +142,7 @@ export default function BasicInfo() {
         <div className='button1'>
 
 <button style={{ color: 'whitesmoke' }}>Cancel</button>
-<button type="submit" ><Link to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/propertydetails`} style={{ color: 'whitesmoke' }} >Save&Coninue</Link></button>
+<button type="submit" >Save&Coninue</button>
 </div>
       </form>
       <Outlet />

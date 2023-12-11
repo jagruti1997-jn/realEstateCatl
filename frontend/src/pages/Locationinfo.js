@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link,Outlet, useParams } from 'react-router-dom'
 export default function Locationinfo() {
-  const{people,token}=useParams()
+  const{people,token,postsId}=useParams()
   return (
     <div className='container'>
       <form>
@@ -89,7 +89,7 @@ export default function Locationinfo() {
       </div >
         <Outlet/>
         <div className='button1'>
-        <button><Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/generalinfo`} style={{color:'whitesmoke'}}>Previous</Link></button>
+        <button><Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsId)}/generalinfo`} style={{color:'whitesmoke'}}>Previous</Link></button>
         <button style={{color:'whitesmoke'}}>Add Property</button>
 </div>
  
