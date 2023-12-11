@@ -1,4 +1,4 @@
-import React, { Children, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 
 import { RiHome2Line } from "react-icons/ri";
 import { FaRegBell } from "react-icons/fa";
@@ -9,10 +9,12 @@ import { LuTag } from "react-icons/lu";
 import { FaBars } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
 
-import { NavLink, useParams ,Outlet, Link} from "react-router-dom";
+import { NavLink, useParams ,Outlet,useNavigate,useLocation, Link} from "react-router-dom";
 const SideBar=({children})=>{
     const {people,token}=useParams()
     const [IsOpen,setIsOpen]=useState(true)
+    const [peopleList, setPeopleList] = useState([])
+
     const Toggle=()=>setIsOpen(!IsOpen)
  
         
@@ -46,6 +48,17 @@ const SideBar=({children})=>{
             icon :<LuTag />
         },
     ]
+    useEffect(() => {
+        fetch("http://localhost:8000/posts/", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization":`test ${token}`
+            }
+        }).then((response) => response.json()).then((value) => setPeopleList(value.posts))
+
+    }, [])
     return (
         <div className="container1">
             <div style={{width: IsOpen ? "200px" : "50px"}} className="sidebar">
@@ -72,17 +85,47 @@ const SideBar=({children})=>{
 
 
             <div>
-            <input type="text" placeholder="Search PPD ID" name="search" className="search" style={{marginLeft:"90%",marginTop:"50%"}}/>
+                <h6>USER ID:{people}</h6>
+            <input type="text" placeholder="Search PPD ID" name="search" className="search" style={{marginLeft:"20%",marginTop:"30%",width:"50%"}}/>
             {/* <button style={{width:"30px",height:"30px",marginLeft:"-40px",border:"none",background:"white"}}><IoIosSearch/></button> */}
            
             </div>
-            <div style={{float:"right",marginTop:"0px",marginLeft:"50%"}}>
+            <div style={{float:"right",marginTop:"50px",marginLeft:"50%"}}>
                 <button className="Addpropertybutton" >
                    
                     <Link style={{textDecoration:"none"}} to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`}>+ Add Property
            </Link> 
                     
               </button>
+             <div>
+
+            
+
+              {
+                <table border="1" style={{ border: "1px solid pink", marginTop: "40px", marginLeft: "-75%", width: "80vw" }}>
+                    {peopleList.map((val, key) => {
+                        return <tr key={key}>
+                          <td >{val.PropertyType}</td>
+                          <td>{val.Negotable}</td>
+                          <td>{val.Price}</td>
+                          <td>{val.PropertyDescription}</td>
+
+                            {/* <td>{val.PPDPackage}</td> */}
+                            <td>{val.Area}</td>
+                            <td>{val.Pincode}</td>
+                            
+                            <td><button style={{ backgroundColor: "darkcyan" }}>eye</button></td>
+                            <td><button style={{ backgroundColor: "darkcyan" }}>edit</button></td>
+
+
+                        </tr>
+
+                    })
+                    }
+                </table>
+            }
+             </div>
+
               </div>
             <Outlet/>
         </div>

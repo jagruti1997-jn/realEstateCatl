@@ -36,6 +36,8 @@ export default function Locationinfo() {
           console.log(form)
 
           alert( JSON.stringify(form))
+          navigateTo(`/home/${encodeURIComponent(people)}/${encodeURIComponent(token)}`,{state: ID})
+
           
         }else{
           navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/generalinfo`,{state: ID})
