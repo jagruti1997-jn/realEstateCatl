@@ -26,41 +26,54 @@ router.get("/", async (req, res) => {
 })
 router.post("/", async (req, res) => {
     const posts = await Post.create({
-        // PropertyType: req.body.PropertyType,
-        // Negotable: req.body.Negotable,
+        PropertyType: req.body.PropertyType,
+        Negotable: req.body.Negotable,
         Price: req.body.Price,
-        // Ownership: req.body.Ownership,
+        Ownership: req.body.Ownership,
         PropertyAge: req.body.PropertyAge,
-        // PropertyApproved: req.body.PropertyApproved,
-        // PropertyDescription: req.body.PropertyDescription,
-        // BankLoan: req.body.BankLoan,
+        PropertyApproved: req.body.PropertyApproved,
+        PropertyDescription: req.body.PropertyDescription,
+        BankLoan: req.body.BankLoan,
+        Length: req.body.Length,
+        Breadth:req.body.Breadth,
+        TotalArea:req.body.TotalArea,
+        AreaUnit:req.body.AreaUnit,
+        NoofBHK:req.body.NoofBHK,
+        NoofFloor:req.body.NoofFloor,
+        Attached:req.body.Attached,
+        WesternToilet:req.body.WesternToilet,
+        Furnished:req.body.Furnished,
+        CarParking:req.body.CarParking,
+        Lift:req.body.Lift,
+        Electricity:req.body.Electricity,
+        Facing:req.body.Facing,
         user: req.user
     });
     res.json({
         status: "success",
-        posts:posts
+        posts:posts,
+        postsId:posts._id
 
         // title:posts.title,
         // image:posts.image
     })
 })
+router.put("/:id", async (req, res) => {
+    try {
+        const posts = await Post.updateOne({ _id: req.params.id }, { body: req.body.body }, { runValidators: true });
+        res.json({
+            status: "success",
+            posts
+        })
+    }
+  catch (e) {
+        res.status(500).json({
+            status: "failed",
+            message: e.message
+        })
+    }
 
-// router.put("/:id", async (req, res) => {
-//     try {
-//         const posts = await Post.updateOne({ _id: req.params.id }, { body: req.body.body }, { runValidators: true });
-//         res.json({
-//             status: "success",
-//             posts
-//         })
-
-//     } catch (e) {
-//         res.status(500).json({
-//             status: "failed",
-//             message: e.message
-//         })
-//     }
-
-// })
+})
 // router.delete("/:id", async (req, res) => {
 //     try {
 //         const posts = await Post.deleteOne({ _id: req.params.id });

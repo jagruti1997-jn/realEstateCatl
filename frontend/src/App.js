@@ -38,9 +38,9 @@ function App() {
           <Route path='/home/:people/:token' element={<Property />} />
           <Route path='/newpage/:people/:token' element={<NewPage />}>
             <Route path='' element={<BasicInfo />} />
-            <Route path='propertydetails' element={<PropertyDetails />} />
-            <Route path='generalinfo' element={<GeneralInfo />} />
-            <Route path='locationinfo' element={<Locationinfo />} />
+            <Route path=':postsid/propertyDetails' element={<PropertyDetails />} />
+            <Route path=':postsid/generalInfo' element={<GeneralInfo />} />
+            <Route path=':postsid/locationinfo' element={<Locationinfo />} />
           </Route>
 
         </Routes>
