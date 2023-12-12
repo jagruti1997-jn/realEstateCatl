@@ -32,9 +32,9 @@ export default function AppRoutes() {
 
               <Route path='/' element={<NewPage/>}>
                  <Route path='' element={<BasicInfo/>} />
-                 <Route path='propertydetails' element={<PropertyDetails/>} />
-                 <Route path='generalinfo' element={<GeneralInfo/>} />
-                 <Route path='locationinfo' element={<Locationinfo/>} />
+                 <Route path=':postid/propertydetails' element={<PropertyDetails/>} />
+                 <Route path=':postsid/generalinfo' element={<GeneralInfo/>} />
+                 <Route path=':postsid/locationinfo' element={<Locationinfo/>} />
               </Route>
             <Route path='/assistance' element={<Assistance/>}/>
             <Route path='/recievedinterest' element={<RecievedInterest/>}/>

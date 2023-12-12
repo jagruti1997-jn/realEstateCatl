@@ -1,12 +1,24 @@
 const express = require("express");
 const Post = require("../models/posts")
 const router = express.Router()
+const multer=require("multer")
+
+
+
+
 
 // const bodyparser = require("body-parser");
 // const { body, validationResult } = require('express-validator')
 // const bcrypt = require("bcrypt")
 // const jwt = require("jsonwebtoken")
 // const secret = 'RESTAPI'
+
+
+//image upload
+
+
+
+
 
 router.get("/", async (req, res) => {
     try{
@@ -47,6 +59,7 @@ router.post("/", async (req, res) => {
         Lift:req.body.Lift,
         Electricity:req.body.Electricity,
         Facing:req.body.Facing,
+        
         user: req.user
     });
     res.json({

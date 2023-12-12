@@ -6,7 +6,7 @@ import { Routes,Route } from 'react-router-dom';
 
 
 const NewPage=()=>{
-    const{people,token,postsId}=useParams()
+    const{people,token,postsID}=useParams()
     return (
         <div >
 <h2 style={{marginTop:"40px",fontStyle:"normal",color:"lightblue"}}>ADD NEW PROPERTY</h2>
@@ -14,9 +14,9 @@ const NewPage=()=>{
  <nav className='navigationbar'>
 <ul >
     <li><NavLink to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`}>basic Info</NavLink> </li>
-    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsId)}/propertyDetails`}>Property Details</NavLink></li>
-    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsId)}/generalInfo`}>General Info</NavLink></li>
-    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsId)}/locationinfo`}>Location Info</NavLink></li>
+    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`}>Property Details</NavLink></li>
+    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/generalInfo`}>General Info</NavLink></li>
+    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/locationinfo`}>Location Info</NavLink></li>
     
 </ul>
 </nav>

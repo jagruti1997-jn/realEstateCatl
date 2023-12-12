@@ -18,41 +18,42 @@ export default function BasicInfo() {
     })
     const [data, setData] = useState("")
     const[toggle,settoggle]=useState(false)
+    const submitData = (e) => {
+      e.preventDefault()
+      console.log(form)
+      
+
+    fetch(`http://localhost:8000/posts/`, {
+        method: "POST",
+        body: JSON.stringify(form),
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization":`test ${token}`
+        }
+    }).then((res) => res.json()).then(
+        (data) => {
+            setData(data)
+            settoggle(!toggle)
+        //     const people=data.people
+        // const token=data.token
+       
+        localStorage.setItem('jsonwebtoken',`test ${token}`)
+        const postsID=data.postsId
+        localStorage.setItem('postsID',`${postsID}`)
+        console.log(people,token,postsID)
+
+        if(data.status==="success"){
+          alert( JSON.stringify(form))
+
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`,{state: postsID})
+        }else{
+          alert("data is not gone into database")
+
+        }
 
 
-const submitData = (e) => {
-  e.preventDefault()
-  console.log(form)
-  
-
-fetch(`http://localhost:8000/posts/`, {
-    method: "POST",
-    body: JSON.stringify(form),
-    headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization":`test ${token}`
-    }
-}).then((res) => res.json()).then(
-    (data) => {
-        setData(data)
-        settoggle(!toggle)
-    //     const people=data.people
-    // const token=data.token
-    const postsID=data.postsId
-    localStorage.setItem('jsonwebtoken',`test ${token}`)
-    localStorage.setItem('postsid',`${postsID}`)
-
-    if(data.status==="success"){
-      alert( JSON.stringify(form))
-              console.log(people,token,postsID)
-
-      navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`)
-    }else{
-      alert("data is not gone into database")
-
-    }
-})
+  })
 }
 
 

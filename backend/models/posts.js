@@ -14,6 +14,7 @@ const postSchema = new Schema({
     Breadth:{type:String},TotalArea:{type:String},AreaUnit:{type:String}
     ,NoofBHK:{type:String},NoofFloor:{type:String},Attached:{type:String},WesternToilet:{type:String},Furnished:{type:String}
     ,CarParking:{type:String},Lift:{type:String},Electricity:{type:String},Facing:{type:String},
+    
     user:{type:Schema.Types.ObjectId,ref:"User"}
    
 
