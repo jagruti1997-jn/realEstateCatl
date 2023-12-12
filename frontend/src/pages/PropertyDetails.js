@@ -8,9 +8,7 @@ export default function PropertyDetails() {
   const ID=location.state
   const {people,token,postsID}=useParams()
  
-  const onChangeFile=e=>{
-     setfileName(e.target.file[0])
-  }
+ 
   const [form, setForm] = useState({
     AreaUnit: "1",
     NoofBHK:"2" ,
@@ -29,19 +27,15 @@ export default function PropertyDetails() {
     const submitData = (e) => {
       e.preventDefault()
       localStorage.getItem('postsID',`${postsID}`)
-
-      
-    
-console.log(people)
-console.log(ID)
+      console.log(people)
+      console.log(ID)
     fetch(`http://localhost:8000/posts/${ID}`, {
         method: "PUT",
         body: JSON.stringify(form),
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Authorization":`test ${token}`,
-            "keys":`${postsID}`
+            "Authorization":`test ${token}`
         }
     }).then((res) => res.json()).then(
         (data) => {
@@ -55,9 +49,9 @@ console.log(ID)
 
           alert( JSON.stringify(form))
           
-          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/generalInfo`)
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/generalInfo`,{state: ID})
         }else{
-          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`)
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`,{state: ID})
 
         }
 })

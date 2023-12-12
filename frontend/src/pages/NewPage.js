@@ -9,6 +9,8 @@ const NewPage=()=>{
     const{people,token,postsID}=useParams()
     return (
         <div >
+         <h6 style={{marginTop:"20px",marginLeft:"20px"}}>USER ID:{people}</h6>
+
 <h2 style={{marginTop:"40px",fontStyle:"normal",color:"lightblue"}}>ADD NEW PROPERTY</h2>
 
  <nav className='navigationbar'>

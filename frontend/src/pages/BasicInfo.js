@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 
 import { Outlet } from 'react-router'
-import { Link,useParams,useNavigate} from "react-router-dom";
+import { Link,useParams,useNavigate,useLocation} from "react-router-dom";
 import PropertyDetails from './PropertyDetails'
 import "./pages.css"
 export default function BasicInfo() {
   let navigateTo=useNavigate();
+  const location = useLocation();
+  const ID=location.state
   const {people,token}=useParams()
   const [form, setForm] = useState({
      PropertyType: "house",
@@ -13,15 +15,25 @@ export default function BasicInfo() {
      Ownership:"select Ownership",
      PropertyAge:"select Property Age",
      PropertyApproved:"select Property Approved",
-     BankLoan:"select Bank Loan"
+     BankLoan:"select Bank Loan",
+    //  Image:"select image"
 
     })
     const [data, setData] = useState("")
     const[toggle,settoggle]=useState(false)
     const submitData = (e) => {
       e.preventDefault()
-      console.log(form)
+     console.log(form)
+//       const formData=new FormData()
       
+//       formData.append("Name",form.PropertyType)
+//       formData.append("Negotable",form.Negotable)
+//       formData.append("Ownership",form.Ownership)
+//       formData.append("PropertyAge",form.PropertyAge)
+//       formData.append("PropertyApproved",form.PropertyApproved)
+//       formData.append("BankLoan",form.BankLoan)
+//       formData.append("Image",form.Image)
+// console.log(formData)
 
     fetch(`http://localhost:8000/posts/`, {
         method: "POST",
@@ -61,7 +73,7 @@ export default function BasicInfo() {
 //fetchData
   return (
     <div className='container'>
-    <form onSubmit={submitData}>      
+    <form onSubmit={submitData} encType="multipart/form-data" >      
        <div className='content'>
          <div className="input-box">
            <label for="PropertyType" className="details">Property Type</label>
@@ -142,6 +154,12 @@ export default function BasicInfo() {
              <option value="other">Other</option>
            </select>
          </div>
+
+         {/* <div>
+  <label>Upload image</label>
+  <input type='file'name='Image' onChange={(e) => setForm({ ...form, Image: e.target.files[0] })}></input>
+
+</div> */}
        </div>
        <div className='button1'>
 
