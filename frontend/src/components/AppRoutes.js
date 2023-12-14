@@ -18,6 +18,8 @@ import GeneralInfo from '../pages/GeneralInfo';
 import Locationinfo from '../pages/Locationinfo';
 import Login from './Login';
 import Register from './Register';
+import ShowPage from '../pages/ShowPage';
+import EditPage from './EditPage';
 
 export default function AppRoutes() {
   const {people,token} =useParams();
@@ -29,20 +31,22 @@ export default function AppRoutes() {
     <SideBar>
      <Routes>
             <Route path="/property" element={<Property/>}/>
-
+             
               <Route path='/' element={<NewPage/>}>
                  <Route path='' element={<BasicInfo/>} />
                  <Route path=':postid/propertydetails' element={<PropertyDetails/>} />
                  <Route path=':postsid/generalinfo' element={<GeneralInfo/>} />
                  <Route path=':postsid/locationinfo' element={<Locationinfo/>} />
               </Route>
+
+
+              
             <Route path='/assistance' element={<Assistance/>}/>
             <Route path='/recievedinterest' element={<RecievedInterest/>}/>
             <Route path='/sentinterest' element={<SentInterest/>}/>
             <Route path='/propertyviews' element={<PropertyViews/>}/>
             <Route path='/tariffplan' element={<TariffPlan/>}/> 
-
-            </Routes>
+                        </Routes>
 
           
 </SideBar>

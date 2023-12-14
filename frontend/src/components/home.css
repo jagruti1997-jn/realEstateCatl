@@ -1,0 +1,16 @@
+/* .homeContainer{
+    margin-top: 30px;
+    max-width: 950px;
+    padding: 28px;
+    margin: 0 20px;
+    border-radius: 10px;
+    overflow:hidden;
+    background: rgbs(0,0,0,0.2);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.6);
+} */
+
+.id{
+      justify-content: space-between;
+}
+
+

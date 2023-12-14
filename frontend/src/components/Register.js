@@ -1,7 +1,7 @@
 import React ,{useState,useEffect} from 'react'
 import {NavLink,Link} from 'react-router-dom'
 import './mix.css'
-
+import 'primeicons/primeicons.css'
 
 const Register = () => {
   
@@ -56,18 +56,18 @@ const handleRegister=(e)=>{
             <div className='two'>
             <input type={!cpassShow ?'password':"text"} value={inpval.password}
              onChange={setVal}  name="password" id='password' placeholder='Password'></input>
-            <div className='showpass' onClick={()=>setcPassShow(!cpassShow)}>
-                {!cpassShow ? 'show':"hide"}
-            </div>
+            <span className='showpass' onClick={()=>setcPassShow(!cpassShow)}>
+                {!cpassShow ? <i className='pi pi-eye'></i>:<i className='pi pi-eye-slash'></i>}
+            </span>
             </div>
         </div>
 
         <div className='form_input'>
             <div className='two'>
             <input type={!passShow ?'password':"text"} value={inpval.Cpassword} onChange={setVal}  name="Cpassword" id='Cpassword' placeholder='Conform Password'></input>
-            <div className='showpass' onClick={()=>setPassShow(!passShow)}>
-                {!passShow ? 'show':"hide"}
-            </div>
+            <span className='showpass' onClick={()=>setPassShow(!passShow)}>
+                {!passShow ? <i className='pi pi-eye'></i>:<i className='pi pi-eye'></i>}
+            </span>
             </div>
             </div>
            

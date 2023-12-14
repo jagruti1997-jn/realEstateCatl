@@ -16,9 +16,11 @@ import Property from "./pages/Property";
 import PropertyViews from "./pages/PropertyViews";
 import TariffPlan from "./pages/TariffPlan";
 import RecievedInterest from "./pages/RecievedInterest";
+import ShowPage from "./pages/ShowPage";
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 import AppRoutes from "./components/AppRoutes";
+import EditPage from "./components/EditPage";
 
 function App() {
 
@@ -31,11 +33,16 @@ function App() {
       <BrowserRouter>
 
         <Routes>
-
+             
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path='/home/:people/:token' element={<SideBar />} />
           <Route path='/home/:people/:token' element={<Property />} />
+          <Route path='/showPage/:id' element={<ShowPage/>}/>
+          <Route path="/editPage/:people/:token/:id" element={<EditPage/>}/>
+            
+          
+         
           <Route path='/newpage/:people/:token' element={<NewPage />}>
             <Route path='' element={<BasicInfo />} />
             <Route path=':postsid/propertyDetails' element={<PropertyDetails />} />

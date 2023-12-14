@@ -27,7 +27,7 @@ export default function PropertyDetails() {
     const submitData = (e) => {
       e.preventDefault()
       localStorage.getItem('postsID',`${postsID}`)
-      console.log(people)
+      // console.log(people)
       console.log(ID)
     fetch(`http://localhost:8000/posts/${ID}`, {
         method: "PUT",

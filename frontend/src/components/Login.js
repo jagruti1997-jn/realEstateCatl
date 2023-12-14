@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import {NavLink,Link, useParams} from 'react-router-dom'
 import "./mix.css"
 
+import 'primeicons/primeicons.css'
 import { useNavigate } from 'react-router-dom'
+
 const Login = () =>{
 
     const [passShow,setPassShow]=useState(false)
@@ -60,6 +62,8 @@ const loginUser=(e)=>{
 
 }
 
+
+
 const validate=(values)=>{
     
 }
@@ -83,16 +87,16 @@ const validate=(values)=>{
             
             <div className='two'>
             <input type={!passShow ?'password':"text"} value={inpval.password} onChange={setVal} name="password" id='password' placeholder='Password'></input>
-            <div className='showpass' onClick={()=>setPassShow(!passShow)}>
-                {!passShow ? 'show':"hide"}
-            </div>
+            <span className='showpass' onClick={()=>setPassShow(!passShow)}>
+                {!passShow ? <i className='pi pi-eye'></i>:<i className="pi pi-eye-slash"></i>}
+            </span>
             
             </div>
            </div>
            <button className='btn'>
             
             Login</button>
-           <button className='btn'><Link to={"/register"}>sign up</Link></button>
+           <button className='btn' ><Link style={{color:"whitesmoke"}} to={"/register"}>Sign up</Link></button>
            <p>Don't have an Account? <NavLink to='/register'>Sign Up</NavLink></p>
      </form>
     </div>

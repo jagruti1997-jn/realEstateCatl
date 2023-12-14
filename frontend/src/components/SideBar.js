@@ -8,13 +8,25 @@ import { RxEyeOpen } from "react-icons/rx";
 import { LuTag } from "react-icons/lu";
 import { FaBars } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
+import "primeicons/primeicons.css"
+import "./home.css"
 
-import { NavLink, useParams ,Outlet,useNavigate,useLocation, Link} from "react-router-dom";
+import { NavLink, useParams ,Outlet,useNavigate,useLocation, Link, Navigate} from "react-router-dom";
 const SideBar=({children})=>{
     const {people,token}=useParams()
     const [IsOpen,setIsOpen]=useState(true)
     const [peopleList, setPeopleList] = useState([])
-
+    // const ID=location.state
+    const navigate=useNavigate();
+    
+const logoutHandle=()=>{
+    localStorage.removeItem(token)
+    navigate("/")
+}
+    
+        
+        
+    
     const Toggle=()=>setIsOpen(!IsOpen)
  
         
@@ -48,6 +60,9 @@ const SideBar=({children})=>{
             icon :<LuTag />
         },
     ]
+
+
+
     useEffect(() => {
         fetch("http://localhost:8000/posts/", {
             method: "GET",
@@ -56,9 +71,10 @@ const SideBar=({children})=>{
                 "Accept": "application/json",
                 "Authorization":`test ${token}`
             }
-        }).then((response) => response.json()).then((value) => setPeopleList(value.posts))
-
-    }, [])
+        }).then((response) => response.json()).then((value) => 
+     setPeopleList(value.posts)
+    , [])
+})
     return (
         <div className="container1">
             <div style={{width: IsOpen ? "200px" : "50px"}} className="sidebar">
@@ -83,51 +99,78 @@ const SideBar=({children})=>{
                 }
             </div>
 
-
-            <div>
+           <div className="homeContainer">
+            
+            <div className="id">
                 <h6>USER ID:{people}</h6>
-            <input type="text" placeholder="Search PPD ID" name="search" className="search" style={{marginLeft:"20%",marginTop:"30%",width:"50%"}}/>
-            {/* <button style={{width:"30px",height:"30px",marginLeft:"-40px",border:"none",background:"white"}}><IoIosSearch/></button> */}
+                
+               <button className="btn" onClick={logoutHandle}>Logout</button>
+              
+            </div>
+            <div className="id2">
+            <input type="text" placeholder="Search PPD ID" name="search" className="search" />
+            <span ><i className="pi pi-search"/></span>
            
             </div>
-            <div style={{float:"right",marginTop:"50px",marginLeft:"50%"}}>
+            
+            <div className="addButton">
                 <button className="Addpropertybutton" >
                    
                     <Link style={{textDecoration:"none"}} to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`}>+ Add Property
            </Link> 
                     
               </button>
-             <div>
+              </div>
+             
 
             
 
               {
-                <table border="1" style={{ border: "1px solid pink", marginTop: "40px", marginLeft: "-75%", width: "80vw" }}>
-                    {peopleList.map((val, key) => {
-                        return <tr key={key}>
-                          <td >{val.PropertyType}</td>
-                          <td>{val.Negotable}</td>
-                          <td>{val.Price}</td>
-                          <td>{val.PropertyDescription}</td>
+                <table border="1" style={{border:"1px solid black"}}>
+                    <thead>
+                        <tr>
+                            <th>key</th>
+                            <th>Property details</th>
+                            <th>Email</th>
+                            <th>city</th>
+                            <th>Property desc</th>
+                            <th>Area</th>
+                            <th>Pincode</th>
 
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {peopleList.map((val, key) => {
+                        
+                        return <tr key={key+1}>
+                            <td>{val.ID}</td>
+                          <td >{val.PropertyType}</td>
+                          <td>{val.Email}</td>
+                          <td>{val.City}</td>
+                          <td>{val.PropertyDescription}</td>
+             
                             {/* <td>{val.PPDPackage}</td> */}
                             <td>{val.Area}</td>
                             <td>{val.Pincode}</td>
                             
-                            <td><button style={{ backgroundColor: "darkcyan" }}>eye</button></td>
-                            <td><button style={{ backgroundColor: "darkcyan" }}>edit</button></td>
+                           
+                            <td><button style={{ backgroundColor: "darkcyan" }} onClick={()=>navigate(`/showPage/${val._id}`,{state: val})}>eye</button></td>
+                            <td><button style={{ backgroundColor: "darkcyan" }} onClick={()=>navigate(`/editPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}>edit</button></td>
 
 
                         </tr>
 
                     })
                     }
+                    </tbody>
                 </table>
             }
-             </div>
+             
 
-              </div>
+              
+              
             <Outlet/>
+            </div>
         </div>
     )
 }
