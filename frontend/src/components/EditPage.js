@@ -15,7 +15,10 @@ const EditPage = () => {
     const [Latitude,setLatitude]=useState(editData.Latitude)
     const [Longitude,setLongitude]=useState(editData.Longitude)
     const [Landmark,setLandmark]=useState(editData.Landmark)
-    
+    const [PropertyType,setPropertyType]=useState(editData.PropertyType)
+    const [PropertyAge,setPropertyAge]=useState(editData.PropertyAge)
+    const [AreaUnit,setAreaUnit]=useState(editData.AreaUnit)
+    const [Electricity,setElectricity]=useState(editData.Electricity)
      
       const [datas, setDatas] = useState("")
       const[toggle,settoggle]=useState(false)
@@ -41,7 +44,7 @@ const EditPage = () => {
         console.log(ID)
       fetch(`http://localhost:8000/posts/editpage/${ID}`, {
           method: "PUT",
-          body: JSON.stringify({Email,City,Area,Pincode,Landmark,Longitude,Latitude,Address}),
+          body: JSON.stringify({Email,City,Area,Pincode,Landmark,Longitude,Latitude,Address,PropertyType,PropertyAge,AreaUnit,Electricity}),
           headers: {
               "Content-Type": "application/json",
               "Accept": "application/json",
@@ -138,6 +141,30 @@ const EditPage = () => {
               <label for="Longitude" className='details'>Longitude</label>
               <br />
               <input name='Longitude' placeholder='Longitude' value={Longitude} onChange={(e) => setLongitude(e.target.value)}/>
+            </div>
+
+
+            <div className='input-box'>
+              <label for="PropertyType" className='details'>Property Type</label>
+              <br />
+              <input name='PropertyType' placeholder='PropertyType' value={PropertyType} onChange={(e) => setPropertyType(e.target.value)}></input>
+            </div>
+    <div className='input-box'>
+              <label for="PropertyAge" className='details'>Property Age</label>
+              <br />
+              <input name='PropertyAge' placeholder='PropertyAge' value={PropertyAge} onChange={(e) => setPropertyAge(e.target.value)}/>
+            </div>
+
+
+            <div className='input-box'>
+              <label for="AreaUnit" className='details'>Area Unit</label>
+              <br />
+              <input name='AreaUnit' placeholder='AreaUnit' value={AreaUnit} onChange={(e) => setAreaUnit(e.target.value)}></input>
+            </div>
+    <div className='input-box'>
+              <label for="Electricity" className='details'>Electricity</label>
+              <br />
+              <input name='Electricity' placeholder='Electricity' value={Electricity} onChange={(e) => setElectricity(e.target.value)}/>
             </div>
   
   

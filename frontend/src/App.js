@@ -38,7 +38,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path='/home/:people/:token' element={<SideBar />} />
           <Route path='/home/:people/:token' element={<Property />} />
-          <Route path='/showPage/:id' element={<ShowPage/>}/>
+          <Route path='/showPage/:people/:token/:id' element={<ShowPage/>}/>
           <Route path="/editPage/:people/:token/:id" element={<EditPage/>}/>
             
           

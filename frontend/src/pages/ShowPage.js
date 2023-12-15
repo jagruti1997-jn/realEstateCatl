@@ -1,86 +1,126 @@
 import React,{useState,useEffect} from 'react'
-import { useParams,useLocation } from 'react-router-dom'
+import { useParams,useLocation,useNavigate } from 'react-router-dom'
+
 const ShowPage = () => {
+const navigate=useNavigate()
+  const {people,token}=useParams()
+
+
   const location = useLocation();
   const data=location.state
-
+const backButton=()=>{
+  navigate(`/home/${encodeURIComponent(people)}/${encodeURIComponent(token)}`)
+}
 
 
 
   return (
-    <div>
+    <div className='showContainer'>
+      <div className='header'>
+        <div>
       <h3>User Details</h3>
-     <div>
-      <div><b>Name:</b> </div>
-      <div>{data.Name}</div>
+      </div>
+      <div>
+      <button onClick={backButton}>Back to Home</button>
+      </div>
+      </div>
+      <div className='content'>
+      
+      
+     <div className='details'>
+      <p><b style={{color:"skyblue"}}>Name:</b>         {data.Email} </p>
+      
     </div>
-    <div>
-      <div><b>Email Id: </b></div>
-      <div>{data.Email}</div>
-    </div>
-    <div>
-      <div><b>Mobile no:</b> </div>
-      <div>{data.Mobile}</div>
-    </div>
-    <div>
-      <div>City: </div>
-      <div>{data.City}</div>
-    </div>
-    <div>
-      <div>Pincode: </div>
-      <div>{data.Pincode}</div>
-    </div>
-    <div>
-      <div>User: </div>
-      <div>{data.user}</div>
-    </div>
-    <div>
-      <div>Property Type: </div>
-      <div>{data.PropertyType}</div>
-    </div>
-    <div>
-      <div>Price: </div>
-      <div>{data.Price}</div>
-    </div>
-    <div>
-      <div>Property Age: </div>
-      <div>{data.Age}</div>
-    </div>
-    <div>
+    <div className='details'>
+      <p><b style={{color:"skyblue"}}>Address:</b>         {data.Address} </p>
+      </div>
 
-      <div>Property Description: </div>
-      <div>{data.PropertyDescription}</div>
+    <div className='details'>
+      <p><b style={{color:"skyblue"}}>Propert Type:</b>         {data.PropertyType} </p>
+      
     </div>
-    <div>
-      <div>Bank Loan: </div>
-      <div>{data.BankLoan}</div>
+    <div className='details'>
+      <p><b style={{color:"skyblue"}}>Nego table:</b>          {data.Negotable} </p>
+      
     </div>
-    <div>
-      <div>Property details: </div>
-      <div>{data.PropertyType}</div>
+    <div className='details'>
+      <p><b>Property Age:</b>          {data.PropertyAge} </p>
+      
     </div>
-    <div>
-      <div>Property details: </div>
-      <div>{data.PropertyType}</div>
+    <div className='details'>
+      <p><b>Propert Approved :</b>          {data.PropertyApproved} </p>
+      
     </div>
-    <div>
-      <div>Area Unit: </div>
-      <div>{data.AreaUnit}</div>
+    <div className='details'>
+      <p><b>Details :</b>          {data.Name} </p>
+      
     </div>
-    <div>
-      <div>Electricity: </div>
-      <div>{data.Electricity}</div>
+    <div className='details'>
+      <p><b>Bank Loan :</b>          {data.BankLoan} </p>
+      
     </div>
-    <div>
-      <div>Lift: </div>
-      <div>{data.Lift}</div>
+    <div className='details'>
+      <p><b>Area Unit :</b>          {data.AreaUnit} </p>
+      
     </div>
-    <div>
-      <div>NoofFloor: </div>
-      <div>{data.NoofFloor}</div>
+    <div className='details'>
+      <p><b>Length :</b>          {data.Length} </p>
+      
     </div>
-
-
+    <div className='details'>
+      <p><b>Breadth :</b>          {data.Breadth} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>Total Area :</b>          {data.TotalArea} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>No of BHK:</b>          {data.NoofBHK} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>Western Toilet:</b>          {data.WesternToilet} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>car parking :</b>          {data.CarParking} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>Lift :</b>          {data.Lift} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>Electricity :</b>          {data.Electricity} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>PPD Package:</b>           {data.PPDPackage} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>Landmark :</b>           {data.Landmark} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>City :</b>           {data.City} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>Pincode:</b>           {data.Pincode} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>Posted By:</b>           {data.PostedBy} </p>
+      
+    </div>
+    <div className='details'>
+      <p><b>Mobile :</b>           {data.Mobile} </p>
+      
+    </div>
+    </div>
+   
       </div>
 
 

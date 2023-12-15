@@ -126,3 +126,53 @@ button:hover{
     gap: 70px;
     list-style: decimal;
   } */
+
+
+  /* show page css*/
+  .showContainer{
+    margin-top: 10px;
+    width: 1300px;
+    padding: 20px;
+    margin: 0 15px;
+    border-radius: 10px;
+    overflow:hidden;
+    background: rgbs(0,0,0,0.2);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.6);
+  }
+
+  .showContainer .content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    padding: 20px 0;
+    
+   
+  }
+
+  .showContainer .content .details{
+  
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+  }
+  .showContainer .content .details p b{
+color: skyblue;
+  }
+  .showContainer h3{
+    color: skyblue;
+    font-size: 25px;
+   
+  }
+
+  .showContainer .header{
+    display: flex;
+    justify-content: space-between;
+  }
+  .showContainer .header{
+    padding-bottom: 20px;
+    border-bottom: 1px solid skyblue;
+    margin: 30px;
+
+  }

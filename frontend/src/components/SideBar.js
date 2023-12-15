@@ -101,32 +101,34 @@ const logoutHandle=()=>{
 
            <div className="homeContainer">
             
-            <div className="id">
-                <h6>USER ID:{people}</h6>
-                
-               <button className="btn" onClick={logoutHandle}>Logout</button>
-              
-            </div>
-            <div className="id2">
-            <input type="text" placeholder="Search PPD ID" name="search" className="search" />
-            <span ><i className="pi pi-search"/></span>
-           
-            </div>
             
-            <div className="addButton">
-                <button className="Addpropertybutton" >
+                <div className="id">
+                <p>USER ID:<span>{people}</span></p>
+               
+                {/* <div className="logoutBtn"> */}
+               <button  onClick={logoutHandle}>Logout</button>
+              </div>
+              
+            
+            <div className="id2">
+                <div>
+            <input type="text" placeholder="Search PPD ID" name="search" className="search"></input>
+           <button><i className="pi pi-search"/></button>
+           </div>
+            <button className="Addpropertybutton" >
                    
-                    <Link style={{textDecoration:"none"}} to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`}>+ Add Property
+                    <Link  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`}>+ Add Property
            </Link> 
                     
               </button>
               </div>
              
-
+              <h4>Property details :-</h4>
             
 
               {
-                <table border="1" style={{border:"1px solid black"}}>
+               
+                <table  >
                     <thead>
                         <tr>
                             <th>key</th>
@@ -136,7 +138,8 @@ const logoutHandle=()=>{
                             <th>Property desc</th>
                             <th>Area</th>
                             <th>Pincode</th>
-
+                            <th>view</th>
+                            <th>edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -154,7 +157,7 @@ const logoutHandle=()=>{
                             <td>{val.Pincode}</td>
                             
                            
-                            <td><button style={{ backgroundColor: "darkcyan" }} onClick={()=>navigate(`/showPage/${val._id}`,{state: val})}>eye</button></td>
+                            <td><button style={{ backgroundColor: "darkcyan" }} onClick={()=>navigate(`/showPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}>eye</button></td>
                             <td><button style={{ backgroundColor: "darkcyan" }} onClick={()=>navigate(`/editPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}>edit</button></td>
 
 
