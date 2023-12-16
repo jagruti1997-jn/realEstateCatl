@@ -70,6 +70,29 @@ router.get("/:id", async (req, res) => {
 
 
 
+// router.get("/find/:City", async (req, res) => {
+   
+//     try{
+       
+//         const posts = await Post.find({City:req.body.City});
+//         res.json({
+//             status: "success",
+//             posts:posts
+//         })
+       
+//     }catch(e){
+//         res.status(500).send({
+//             status:"failed",
+//             message: e.message
+          
+//         })  
+//     }
+  
+// })
+
+
+
+
 router.post("/" ,async (req, res) => {
     const posts = await Post.create({
         PropertyType: req.body.PropertyType,Negotable: req.body.Negotable,Price: req.body.Price,Ownership: req.body.Ownership,

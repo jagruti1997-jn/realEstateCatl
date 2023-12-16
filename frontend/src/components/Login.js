@@ -39,11 +39,12 @@ const loginUser=(e)=>{
 
         if(res.status==="success"){
             const token=res.token
-
+             alert("user logged in successful")
             localStorage.setItem('jsonwebtoken',`test ${token}`)
           
             navigateTo(`/home/${encodeURIComponent(res.people)}/${encodeURIComponent(token)}`)
         }else{
+            alert("please valid email & password")
             navigateTo("/register")
         }
     })
@@ -70,7 +71,7 @@ const validate=(values)=>{
 
     return(
 <>
-<section className='loginContainer'>
+<div className='loginContainer'>
     <div className='form_data'>
      <div className='form_heading'>
         <h1>Logo</h1>
@@ -100,7 +101,7 @@ const validate=(values)=>{
            <p>Don't have an Account? <NavLink to='/register'>Sign Up</NavLink></p>
      </form>
     </div>
-</section>
+</div>
 </>
     )
 }

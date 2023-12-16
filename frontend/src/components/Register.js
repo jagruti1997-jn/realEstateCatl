@@ -2,6 +2,7 @@ import React ,{useState,useEffect} from 'react'
 import {NavLink,Link} from 'react-router-dom'
 import './mix.css'
 import 'primeicons/primeicons.css'
+import { FaDivide } from 'react-icons/fa'
 
 const Register = () => {
   
@@ -37,7 +38,7 @@ const handleRegister=(e)=>{
 }
  return(
 <>
-<section className='loginContainer'>
+<div className='loginContainer'>
     <div className='form_data'>
      <div className='form_heading'>
         <h1>Sign Up</h1>
@@ -76,7 +77,7 @@ const handleRegister=(e)=>{
            
      </form>
     </div>
-</section>
+</div>
 </>
     
   )

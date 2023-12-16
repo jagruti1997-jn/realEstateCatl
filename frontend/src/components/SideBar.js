@@ -16,14 +16,24 @@ const SideBar=({children})=>{
     const {people,token}=useParams()
     const [IsOpen,setIsOpen]=useState(true)
     const [peopleList, setPeopleList] = useState([])
-    // const ID=location.state
+    
     const navigate=useNavigate();
+    const location = useLocation();
+    const ID=location.state
+
+
+    
+    const [query, setQuery] =useState('');
+   
+   
+
+
     
 const logoutHandle=()=>{
-    localStorage.removeItem(token)
+    
     navigate("/")
 }
-    
+ 
         
         
     
@@ -62,18 +72,19 @@ const logoutHandle=()=>{
     ]
 
 
+useEffect(() => {
+    fetch("http://localhost:8000/posts/", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization":`test ${token}`
+        }
+    }).then((response) => response.json()).then((value) => {
+ setPeopleList(value.posts)
 
-    useEffect(() => {
-        fetch("http://localhost:8000/posts/", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Authorization":`test ${token}`
-            }
-        }).then((response) => response.json()).then((value) => 
-     setPeopleList(value.posts)
-    , [])
+    }
+, [])
 })
     return (
         <div className="container1">
@@ -112,8 +123,8 @@ const logoutHandle=()=>{
             
             <div className="id2">
                 <div>
-            <input type="text" placeholder="Search PPD ID" name="search" className="search"></input>
-           <button><i className="pi pi-search"/></button>
+            <input type="text" placeholder="Search PPD ID"   onChange={(e)=>setQuery(e.target.value)} name="search" className="search"></input>
+           <button ><i className="pi pi-search"/></button>
            </div>
             <button className="Addpropertybutton" >
                    
@@ -131,8 +142,7 @@ const logoutHandle=()=>{
                 <table  >
                     <thead>
                         <tr>
-                            <th>key</th>
-                            <th>Property details</th>
+                            <th>PPD ID</th>
                             <th>Email</th>
                             <th>city</th>
                             <th>Property desc</th>
@@ -143,11 +153,15 @@ const logoutHandle=()=>{
                         </tr>
                     </thead>
                     <tbody>
-                    {peopleList.map((val, key) => {
-                        
-                        return <tr key={key+1}>
-                            <td>{val.ID}</td>
-                          <td >{val.PropertyType}</td>
+                    {peopleList.filter(val=>{
+                       if(query === ''){
+                        return val;
+                       }else if(val._id==query){
+                        return val;
+                       }
+                    }).map((val,key) => {
+                        return <tr>
+                            <td >{val._id}</td>
                           <td>{val.Email}</td>
                           <td>{val.City}</td>
                           <td>{val.PropertyDescription}</td>
@@ -157,8 +171,8 @@ const logoutHandle=()=>{
                             <td>{val.Pincode}</td>
                             
                            
-                            <td><button style={{ backgroundColor: "darkcyan" }} onClick={()=>navigate(`/showPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}>eye</button></td>
-                            <td><button style={{ backgroundColor: "darkcyan" }} onClick={()=>navigate(`/editPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}>edit</button></td>
+                            <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/showPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-eye'></i></button></td>
+                            <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/editPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-file-edit'></i></button></td>
 
 
                         </tr>

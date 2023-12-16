@@ -19,11 +19,11 @@ const NewPage=()=>{
 
     return (
         <div >
-         <h6 style={{marginTop:"20px",marginLeft:"20px"}}>USER ID:{people}</h6>
+         <h4 style={{marginTop:"20px",marginLeft:"20px", color:"white", backgroundColor:"skyblue"}}>USER ID:{people}</h4>
        
-<h2 style={{marginTop:"40px",fontStyle:"normal",color:"lightblue"}}>ADD NEW PROPERTY</h2>
+<h2 style={{marginTop:"40px",fontStyle:"normal",color:"skyblue",borderBottom:"1px solid skyblue",margin:"17px"}}>ADD NEW PROPERTY</h2>
 
- <nav className='navigationbar'>
+ <nav className='navigationbar' >
 <ul >
     <li><NavLink to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`}>basic Info</NavLink> </li>
     <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`}>Property Details</NavLink></li>

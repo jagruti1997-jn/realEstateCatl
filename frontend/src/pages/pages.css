@@ -87,34 +87,40 @@ button:hover{
 
 .navigationbar ul li:hover{
     border-radius: 20px;
-    background-color:rgb(84, 159, 188);
-    height: 50px;
-    padding-bottom: 30px;
+    background-color:rgb(51, 138, 172);
+    height: 25px;
+    /* padding-bottom: 30px; */
     justify-content: space-between;
      padding-left: 10px;
     padding-right: 10px; 
     color: whitesmoke;
+    text-decoration: none;
     border: none;
     font-size: medium;
     justify-content: center;
     
 } 
 
-
+.navigationbar ul li Navlink:active{
+background-color: skyblue;
+}
 .navigationbar  ul li{
     /* float: left; */
    /* margin-right: 50px; */
+   font-size: 20px;
     padding: 8px;
-    color:rgb(112, 110, 110);
+    color:white;
+    margin-top: 5px;
+    padding-top: 10px;
     
   
   } 
 
   .navigationbar{
     height: 50px;
-    background-color: whitesmoke;
+    background-color:skyblue;
     justify-content:space-between;
-  margin-bottom: 20px;
+   margin-left: 20px;
   padding: 0;
   
   }
