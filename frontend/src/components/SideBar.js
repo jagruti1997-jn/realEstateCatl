@@ -139,58 +139,47 @@ useEffect(() => {
               </div>
              
               <h4>Property details :-</h4>
-            
-
-              {
+        <table  >
+               <thead>
+                   <tr>
+                       <th>PPD ID</th>
+                       <th>Email</th>
+                       <th>city</th>
+                       <th>Property desc</th>
+                       <th>Area</th>
+                       <th>Pincode</th>
+                       <th>view</th>
+                       <th>edit</th>
+                   </tr>
+               </thead>
+               {peopleList.filter(val=>{
+                  if(query===""){
+                   return val;
+                  }else if(val._id.includes(query)){
+                   return val
+                  }
+               }).map(val=> (
+                    <tr>
+                       <td >{val._id}</td>
+                     <td>{val.Email}</td>
+                     <td>{val.City}</td>
+                     <td>{val.PropertyDescription}</td>
+                       {/* <td>{val.PPDPackage}</td> */}
+                       <td>{val.Area}</td>
+                       <td>{val.Pincode}</td>
+                       <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/showPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-eye'></i></button></td>
+                       <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/editPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-file-edit'></i></button></td>
+                   </tr>
+               ))
+               }
+           </table>
                
-                <table  >
-                    <thead>
-                        <tr>
-                            <th>PPD ID</th>
-                            <th>Email</th>
-                            <th>city</th>
-                            <th>Property desc</th>
-                            <th>Area</th>
-                            <th>Pincode</th>
-                            <th>view</th>
-                            <th>edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {peopleList.filter(val=>{
-                       if(query === ''){
-                        return val;
-                       }else if(val._id==query){
-                        return val;
-                       }
-                    }).map((val,key) => {
-                        return <tr>
-                            <td >{val._id}</td>
-                          <td>{val.Email}</td>
-                          <td>{val.City}</td>
-                          <td>{val.PropertyDescription}</td>
-             
-                            {/* <td>{val.PPDPackage}</td> */}
-                            <td>{val.Area}</td>
-                            <td>{val.Pincode}</td>
-                            
-                           
-                            <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/showPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-eye'></i></button></td>
-                            <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/editPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-file-edit'></i></button></td>
 
-
-                        </tr>
-
-                    })
-                    }
-                    </tbody>
-                </table>
-            }
-             
 
               
               
             <Outlet/>
+
             </div>
         </div>
     )
