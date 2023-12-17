@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { Children, useCallback, useEffect, useState } from "react";
 
 import { RiHome2Line } from "react-icons/ri";
 import { FaRegBell } from "react-icons/fa";
@@ -72,8 +72,11 @@ const logoutHandle=()=>{
     ]
 
 
+ 
+
 useEffect(() => {
-    fetch("http://localhost:8000/posts/", {
+
+ fetch("http://localhost:8000/posts/", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -85,7 +88,8 @@ useEffect(() => {
 
     }
 , [])
-})
+    
+},[])
     return (
         <div className="container1">
             <div style={{width: IsOpen ? "200px" : "50px"}} className="sidebar">
