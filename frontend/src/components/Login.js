@@ -42,7 +42,7 @@ const loginUser=(e)=>{
              alert("user logged in successful")
             localStorage.setItem('jsonwebtoken',`test ${token}`)
           
-            navigateTo(`/home/${encodeURIComponent(res.people)}/${encodeURIComponent(token)}`)
+            navigateTo(`/home/${encodeURIComponent(res.people)}/${encodeURIComponent(token)}`,{state:token})
         }else{
             alert("please valid email & password")
             navigateTo("/register")

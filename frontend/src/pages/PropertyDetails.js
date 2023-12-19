@@ -6,9 +6,9 @@ export default function PropertyDetails() {
   let navigateTo=useNavigate();
   const location = useLocation();
   const ID=location.state
-  const {people,token,postsID}=useParams()
- 
- 
+  console.log(ID)
+  const {people,token}=useParams()
+  console.log(people,token)
   const [form, setForm] = useState({
     AreaUnit: "1",
     NoofBHK:"2" ,
@@ -26,9 +26,6 @@ export default function PropertyDetails() {
     const[toggle,settoggle]=useState(false)
     const submitData = (e) => {
       e.preventDefault()
-      localStorage.getItem('postsID',`${postsID}`)
-      // console.log(people)
-      console.log(ID)
     fetch(`http://localhost:8000/posts/${ID}`, {
         method: "PUT",
         body: JSON.stringify(form),
@@ -44,12 +41,9 @@ export default function PropertyDetails() {
       
         localStorage.setItem('jsonwebtoken',`test ${token}`)
         if(data.status==="success"){
-          const postsID=data.postsId
-          console.log(form)
-
           alert( JSON.stringify(form))
           
-          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/generalInfo`,{state: ID})
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/generalInfo`,{state: ID})
         }else{
           navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`,{state: ID})
 

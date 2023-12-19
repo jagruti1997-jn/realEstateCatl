@@ -45,9 +45,9 @@ function App() {
          
           <Route path='/newpage/:people/:token' element={<NewPage />}>
             <Route path='' element={<BasicInfo />} />
-            <Route path=':postsid/propertyDetails' element={<PropertyDetails />} />
-            <Route path=':postsid/generalInfo' element={<GeneralInfo />} />
-            <Route path=':postsid/locationinfo' element={<Locationinfo />} />
+            <Route path='propertyDetails' element={<PropertyDetails />} />
+            <Route path='generalInfo' element={<GeneralInfo />} />
+            <Route path='locationinfo' element={<Locationinfo />} />
           </Route>
 
         </Routes>

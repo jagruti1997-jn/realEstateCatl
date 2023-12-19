@@ -20,10 +20,11 @@ const SideBar=({children})=>{
     const navigate=useNavigate();
     const location = useLocation();
     const ID=location.state
+    console.log(ID)
 
 
     
-    const [query, setQuery] =useState('');
+    const [query, setQuery] =useState("");
    
    
 
@@ -73,7 +74,7 @@ const logoutHandle=()=>{
 
 
 useEffect(() => {
-    fetch("http://localhost:8000/posts/", {
+    fetch(`http://localhost:8000/posts/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -85,7 +86,7 @@ useEffect(() => {
 
     }
 , [])
-})
+},[])
     return (
         <div className="container1">
             <div style={{width: IsOpen ? "200px" : "50px"}} className="sidebar">
@@ -123,7 +124,7 @@ useEffect(() => {
             
             <div className="id2">
                 <div>
-            <input type="text" placeholder="Search PPD ID"   onChange={(e)=>setQuery(e.target.value)} name="search" className="search"></input>
+            <input type="text" placeholder="Search PPD ID"   onChange={(e)=>setQuery(e.target.value)} name="search" className="search"/>
            <button ><i className="pi pi-search"/></button>
            </div>
             <button className="Addpropertybutton" >
@@ -135,10 +136,7 @@ useEffect(() => {
               </div>
              
               <h4>Property details :-</h4>
-            
-
-              {
-               
+              
                 <table  >
                     <thead>
                         <tr>
@@ -152,39 +150,28 @@ useEffect(() => {
                             <th>edit</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    
                     {peopleList.filter(val=>{
-                       if(query === ''){
+                       if(query===""){
                         return val;
-                       }else if(val._id==query){
-                        return val;
+                       }else if(val._id.includes(query)){
+                        return val
                        }
-                    }).map((val,key) => {
-                        return <tr>
+                    }).map(val=> ( 
+                         <tr>
                             <td >{val._id}</td>
                           <td>{val.Email}</td>
                           <td>{val.City}</td>
                           <td>{val.PropertyDescription}</td>
-             
                             {/* <td>{val.PPDPackage}</td> */}
                             <td>{val.Area}</td>
-                            <td>{val.Pincode}</td>
-                            
-                           
+                            <td>{val.Pincode}</td>                           
                             <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/showPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-eye'></i></button></td>
                             <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/editPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-file-edit'></i></button></td>
-
-
                         </tr>
-
-                    })
-                    }
-                    </tbody>
+                    ))
+                        }
                 </table>
-            }
-             
-
-              
               
             <Outlet/>
             </div>

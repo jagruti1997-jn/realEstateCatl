@@ -2,8 +2,8 @@ const express = require("express");
 const Post = require("../models/posts")
 const router = express.Router()
 
-// const multer=require("multer")
-// const path=require("path")
+const multer=require("multer")
+const path=require("path")
 
 // router.use(express.static('public'));
 
@@ -15,20 +15,18 @@ const router = express.Router()
 // const jwt = require("jsonwebtoken")
 // const secret = 'RESTAPI'
 
+const storage=multer.diskStorage({
+    destination:(req,file,cb)=>{
+        cb(null,'uploads')
+    },
+    filename:(req,file,cb)=>{
+        cb(null,file.filename+ "_"+ Date.now()+ path.extname(file.originalname)); 
+    }
+})
 
-//image upload
-// const storage=multer.diskStorage({
-//     destination:(req,file,cb)=>{
-//         cb(null,'public/images')
-//     },
-//     filename:(req,file,cb)=>{
-//         cb(null,file.filename+ "_"+ Date.now()+ path.extname(file.originalname)); 
-//     }
-// })
-
-// const upload=multer({
-//     storage:storage
-// })
+const upload=multer({
+    storage:storage
+})
 
 
 router.get("/", async (req, res) => {
@@ -68,32 +66,7 @@ router.get("/:id", async (req, res) => {
   
 })
 
-
-
-// router.get("/find/:City", async (req, res) => {
-   
-//     try{
-       
-//         const posts = await Post.find({City:req.body.City});
-//         res.json({
-//             status: "success",
-//             posts:posts
-//         })
-       
-//     }catch(e){
-//         res.status(500).send({
-//             status:"failed",
-//             message: e.message
-          
-//         })  
-//     }
-  
-// })
-
-
-
-
-router.post("/" ,async (req, res) => {
+router.post("/" ,upload.single("image"),async (req, res) => {
     const posts = await Post.create({
         PropertyType: req.body.PropertyType,Negotable: req.body.Negotable,Price: req.body.Price,Ownership: req.body.Ownership,
         PropertyAge: req.body.PropertyAge,PropertyApproved: req.body.PropertyApproved,PropertyDescription: req.body.PropertyDescription,
@@ -104,6 +77,8 @@ router.post("/" ,async (req, res) => {
        
         Name:req.body.Name,Mobile:req.body.Mobile,PostedBy:req.body.PostedBy,SaleType:req.body.SaleType,FeaturedPackage:req.body.FeaturedPackage,
         PPDPackage:req.body.PPDPackage,
+        
+      
 
         Email:req.body.Email, City:req.body.City,Area:req.body.Area, Pincode:req.body.Pincode,
         Address:req.body.Address, Landmark:req.body.Landmark,Latitude:req.body.Latitude,Longitude:req.body.Longitude,
@@ -118,7 +93,7 @@ router.post("/" ,async (req, res) => {
         // image:posts.image
     })
 })
-router.put("/:id", async (req, res)  => {
+router.put("/:id" ,upload.single("image"), async (req, res)  => {
     try {
         
         const posts = await Post.updateMany({ _id: req.params.id },
@@ -129,6 +104,10 @@ router.put("/:id", async (req, res)  => {
              , Electricity: req.body.Electricity , Facing: req.body.Facing ,  Name:req.body.Name,Mobile:req.body.Mobile,PostedBy:req.body.PostedBy,
              SaleType:req.body.SaleType,FeaturedPackage:req.body.FeaturedPackage,
              PPDPackage:req.body.PPDPackage, 
+
+            //  image:req.file.filename,
+
+            
               Email:req.body.Email, City:req.body.City,Area:req.body.Area, Pincode:req.body.Pincode,
              Address:req.body.Address, Landmark:req.body.Landmark,Latitude:req.body.Latitude,Longitude:req.body.Longitude,
              runValidators: true }});
@@ -195,6 +174,25 @@ router.delete("/:id", async (req, res) => {
 
 // })
 
+// router.get("/find/:City", async (req, res) => {
+   
+//     try{
+       
+//         const posts = await Post.find({City:req.body.City});
+//         res.json({
+//             status: "success",
+//             posts:posts
+//         })
+       
+//     }catch(e){
+//         res.status(500).send({
+//             status:"failed",
+//             message: e.message
+          
+//         })  
+//     }
+  
+// })
 
 //put for edit
 

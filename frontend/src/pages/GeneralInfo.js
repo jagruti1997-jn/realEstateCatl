@@ -4,7 +4,9 @@ export default function GeneralInfo() {
   let navigateTo=useNavigate();
   const location = useLocation();
   const ID=location.state
-  const {people,token,postsID}=useParams()
+  console.log(ID)
+  const {people,token}=useParams()
+  console.log(people,token)
   const [form, setForm] = useState({
     Name: "Owner",
     PostedBy:"amulya" ,
@@ -17,10 +19,6 @@ export default function GeneralInfo() {
     const[toggle,settoggle]=useState(false)
     const submitData = (e) => {
       e.preventDefault()
-     
-      localStorage.getItem('postsID',`${postsID}`)
-      console.log(people)
-      console.log(ID)
     fetch(`http://localhost:8000/posts/${ID}`, {
         method: "PUT",
         body: JSON.stringify(form),
@@ -36,14 +34,11 @@ export default function GeneralInfo() {
       
         localStorage.setItem('jsonwebtoken',`test ${token}`)
         if(data.status==="success"){
-          const postsID=data.postsId
-          console.log(form)
-
           alert( JSON.stringify(form))
           
-          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/locationinfo`,{state: ID})
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/locationinfo`,{state: ID})
         }else{
-          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`,{state: ID})
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/propertyDetails`,{state: ID})
 
         }
 })
@@ -117,7 +112,9 @@ export default function GeneralInfo() {
   <option value="other">Other</option>
 </select>
 </div>
-
+<div>
+  <input type='file' name='image' accept='image/*' onChange={(e)=>setForm({...form,image:e.target.files[0]})}></input>
+</div>
 
 
 </div>

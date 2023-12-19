@@ -16,7 +16,7 @@ const postSchema = new Schema({
     ,CarParking:{type:String},Lift:{type:String},Electricity:{type:String},Facing:{type:String},
 
     Name:{type:String},Mobile:{type:Number},PostedBy:{type:String},SaleType:{type:String},
-    FeaturedPackage:{type:String},PPDPackage:{type:String},
+    FeaturedPackage:{type:String},PPDPackage:{type:String},image:{type:String},
 
     Email:{type:String},City:{type:String},Area:{type:String},Pincode:{type:String},Address:{type:String},
     Landmark:{type:String},Latitude:{type:String},Longitude:{type:String},
