@@ -182,3 +182,13 @@ color: skyblue;
     margin: 30px;
 
   }
+
+
+  .pageContainer{
+    display: flex;
+  }
+  .newPageContainer{
+   width:100%;
+    /* margin: auto; */
+    /* justify-content: left; */
+  }

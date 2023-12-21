@@ -11,7 +11,14 @@ const Register = () => {
     const [passShow,setPassShow]=useState(false)
     const [cpassShow,setcPassShow]=useState(false)
 
-    const [inpval,setInpVal]=useState({});
+    const [formerror,setFormError]=useState({});
+    const [isSubmit,setSubmit]=useState(false)
+
+    const [inpval,setInpVal]=useState({
+        email:"",
+        password:"",
+        cpassword:""
+    });
     const setVal= (e)=>{
      const {name,value}=e.target;
      setInpVal(()=>{
@@ -22,10 +29,29 @@ const Register = () => {
      })
     };
 
+    const validateForm=(values)=>{
+        const errors={};
+        const regex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(!values.email){
+         errors.email="email is required"
+        }else if(!regex.test(values.email)){
+         errors.email="this is not a valid email format"
+        }
+        if(!values.password){
+         errors.password="password is required"
+        }
+        if(!values.cpassword){
+            errors.cpassword="conform password is required";
+           }
+        return errors;
+        }
+
    
 
 const handleRegister=(e)=>{
     e.preventDefault()
+    setFormError(validateForm(inpval))
+    setSubmit(true)
     console.log(inpval)
     fetch("http://localhost:8000/signup/register", {
         method: "POST",
@@ -51,7 +77,7 @@ const handleRegister=(e)=>{
             <input type='email' value={inpval.email} onChange={setVal} name='email' id='email' placeholder='Mail ID'></input>
 
         </div>
-
+        <p style={{color:"red"}}>{formerror.email}</p>
         <div className='form_input'>
             
             <div className='two'>
@@ -62,7 +88,8 @@ const handleRegister=(e)=>{
             </span>
             </div>
         </div>
-
+        
+        <p style={{color:"red"}}>{formerror.password}</p>
         <div className='form_input'>
             <div className='two'>
             <input type={!passShow ?'password':"text"} value={inpval.Cpassword} onChange={setVal}  name="Cpassword" id='Cpassword' placeholder='Conform Password'></input>
@@ -71,7 +98,7 @@ const handleRegister=(e)=>{
             </span>
             </div>
             </div>
-           
+            <p style={{color:"red"}}>{formerror.cpassword}</p>
            <button className='btn' onSubmit={handleRegister}>Sign up</button>.         
            <p><NavLink to='/'>Sign in</NavLink></p>
            

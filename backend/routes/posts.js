@@ -2,33 +2,6 @@ const express = require("express");
 const Post = require("../models/posts")
 const router = express.Router()
 
-// const multer=require("multer")
-// const path=require("path")
-
-// router.use(express.static('public'));
-
-
-
-// const bodyparser = require("body-parser");
-// const { body, validationResult } = require('express-validator')
-// const bcrypt = require("bcrypt")
-// const jwt = require("jsonwebtoken")
-// const secret = 'RESTAPI'
-
-
-//image upload
-// const storage=multer.diskStorage({
-//     destination:(req,file,cb)=>{
-//         cb(null,'public/images')
-//     },
-//     filename:(req,file,cb)=>{
-//         cb(null,file.filename+ "_"+ Date.now()+ path.extname(file.originalname)); 
-//     }
-// })
-
-// const upload=multer({
-//     storage:storage
-// })
 
 
 router.get("/", async (req, res) => {

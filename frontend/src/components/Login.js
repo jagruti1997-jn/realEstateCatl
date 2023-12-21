@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
-import {NavLink,Link, useParams} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import {NavLink,Link, useParams, Outlet} from 'react-router-dom'
 import "./mix.css"
 
 import 'primeicons/primeicons.css'
 import { useNavigate } from 'react-router-dom'
-
+const imgage =require("./icon.webp")
 const Login = () =>{
 
     const [passShow,setPassShow]=useState(false)
+    const [formerror,setFormError]=useState({});
+    const [isSubmit,setSubmit]=useState(false)
+    const [data,setdata]=useState("")
     let navigateTo=useNavigate();
     const [inpval,setInpVal]=useState({
         email:"",
@@ -24,9 +27,24 @@ const Login = () =>{
         })
        };
 
+       const validateForm=(values)=>{
+       const errors={};
+       const regex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+       if(!values.email){
+        errors.email="email is required"
+       }else if(!regex.test(values.email)){
+        errors.email="this is not a valid email format"
+       }
+       if(!values.password){
+        errors.password="password is required"
+       }
+       return errors;
+       }
+
 const loginUser=(e)=>{
     e.preventDefault()
-
+     setFormError(validateForm(inpval))
+     setSubmit(true)
     const {email, password}=inpval;
     fetch("http://localhost:8000/signin/login", {
         method: "POST",
@@ -36,45 +54,35 @@ const loginUser=(e)=>{
             "Accept": "application/json"
         }
     }).then((data) => data.json()).then((res) =>  { 
-
+setdata(res)
         if(res.status==="success"){
             const token=res.token
-             alert("user logged in successful")
+            alert("logged in successful")
             localStorage.setItem('jsonwebtoken',`test ${token}`)
           
             navigateTo(`/home/${encodeURIComponent(res.people)}/${encodeURIComponent(token)}`)
         }else{
-            alert("please valid email & password")
-            navigateTo("/register")
+           
+            
         }
     })
-    if(email === ""){
-        alert("please enter your email");
-      }else if(!email.includes("@")){
-        alert("enter valid email id")
-      }else if(password ===""){
-        alert("enter your password")
-      }else if(password.length <6){
-        alert("password must be 6 char")
-    }else{
-        console.log("user logged succesful")
-    }
+   
    
 
 }
 
 
 
-const validate=(values)=>{
-    
-}
+
 
     return(
 <>
 <div className='loginContainer'>
+    
     <div className='form_data'>
+        
      <div className='form_heading'>
-        <h1>Logo</h1>
+        <h2>Logo</h2>
      </div>
 
      <form onSubmit={loginUser}>
@@ -83,7 +91,7 @@ const validate=(values)=>{
             <input type='email'name='email'value={inpval.email} onChange={setVal} id='email' placeholder='User ID'></input>
 
         </div>
-
+          <p style={{color:"red"}}>{formerror.email}</p>
         <div className='form_input'>
             
             <div className='two'>
@@ -94,12 +102,21 @@ const validate=(values)=>{
             
             </div>
            </div>
+           <p style={{color:"red"}}>{formerror.password}</p>
            <button className='btn'>
             
             Login</button>
            <button className='btn' ><Link style={{color:"whitesmoke"}} to={"/register"}>Sign up</Link></button>
            <p>Don't have an Account? <NavLink to='/register'>Sign Up</NavLink></p>
      </form>
+<Outlet/>
+
+     {
+            data.status === "success" && <div style={{ color: "green" }}> Logged In Successfuly</div>
+        }{
+            data.status === "failed" && <div style={{ color: "red" }}>lLogged In  Failed</div>
+
+        }
     </div>
 </div>
 </>

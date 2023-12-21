@@ -10,7 +10,7 @@ import { FaBars } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
 import "primeicons/primeicons.css"
 import "./home.css"
-
+import NavSidebar from "./NavSidebar";
 import { NavLink, useParams ,Outlet,useNavigate,useLocation, Link, Navigate} from "react-router-dom";
 const SideBar=({children})=>{
     const {people,token}=useParams()
@@ -40,36 +40,7 @@ const logoutHandle=()=>{
     const Toggle=()=>setIsOpen(!IsOpen)
  
         
-    const menuItem=[
-        {
-            path:"/home/:people/:token",
-            name: "Property",
-            icon :<RiHome2Line />
-        }, {
-            path:"/assistance",
-            name: "Assistance",
-            icon :<FaRegBell />
-        }, {
-            path:"/recievedinterest",
-            name: "Recieved Interest",
-            icon :<PiDownloadSimpleFill />
-
-        }, {
-            path:"/sentinterest",
-            name: "Sent Interest",
-            icon :<BiSolidUpArrowCircle /> 
-        },
-        {
-            path:"/propertyviews",
-            name: "Property Views",
-            icon :<RxEyeOpen />
-        },
-        {
-            path:"/tariffplan",
-            name: "Tariff Plan",
-            icon :<LuTag />
-        },
-    ]
+    
 
 
  
@@ -92,27 +63,8 @@ useEffect(() => {
 },[])
     return (
         <div className="container1">
-            <div style={{width: IsOpen ? "200px" : "50px"}} className="sidebar">
-                <div className="top_section">
-                    <h1 style={{display: IsOpen ? "block" : "none"}} className="logo">Logo</h1>
-                    <div style={{marginLeft: IsOpen ? "60px" : "0px"}}className="bars">
-                        <FaBars onClick={Toggle}/>
-                    </div>
-
-                </div>
-                {
-                    menuItem.map((item,index)=>( 
-                        <NavLink to={item.path} key={index} className="link" activeClassName="active">
-                            <div className="icon">{item.icon} </div>
-                            <div style={{display: IsOpen ? "block" : "none"}} className="link_text">{item.name} </div>
-
-
-                        </NavLink>
-
-
-                    ))
-                }
-            </div>
+            <NavSidebar/>
+           
 
            <div className="homeContainer">
             
@@ -147,6 +99,7 @@ useEffect(() => {
                        <th>city</th>
                        <th>Property desc</th>
                        <th>Area</th>
+                        <th>PPDPackage</th>
                        <th>Pincode</th>
                        <th>view</th>
                        <th>edit</th>
@@ -164,7 +117,7 @@ useEffect(() => {
                      <td>{val.Email}</td>
                      <td>{val.City}</td>
                      <td>{val.PropertyDescription}</td>
-                       {/* <td>{val.PPDPackage}</td> */}
+                       <td>{val.PPDPackage}</td>
                        <td>{val.Area}</td>
                        <td>{val.Pincode}</td>
                        <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/showPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-eye'></i></button></td>

@@ -3,6 +3,7 @@ import {Link,NavLink,Outlet, useParams,useNavigate} from 'react-router-dom';
 import "./pages.css"
 import { BrowserRouter } from 'react-router-dom';
 import { Routes,Route } from 'react-router-dom';
+import NavSidebar from "../components/NavSidebar";
 
 
 const NewPage=()=>{
@@ -18,7 +19,13 @@ const NewPage=()=>{
 
 
     return (
-        <div >
+       <div className="pageContainer">
+        <div>
+         <NavSidebar/>
+         </div> 
+        
+        <div className="newPageContainer" >
+           
          <h4 style={{marginTop:"20px",marginLeft:"20px", color:"white", backgroundColor:"skyblue"}}>USER ID:{people}</h4>
        
 <h2 style={{marginTop:"40px",fontStyle:"normal",color:"skyblue",borderBottom:"1px solid skyblue",margin:"17px"}}>ADD NEW PROPERTY</h2>
@@ -33,6 +40,7 @@ const NewPage=()=>{
 </ul>
 </nav>
 <Outlet/>
+   </div>
    </div>
     )
 }

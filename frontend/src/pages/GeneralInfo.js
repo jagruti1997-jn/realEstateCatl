@@ -10,8 +10,8 @@ export default function GeneralInfo() {
     PostedBy:"amulya" ,
     SaleType:"1",
     FeaturedPackage:"house",
-    PPDPackage:"1",
-    
+    PPDPackage:"1"
+   
     })
     const [data, setData] = useState("")
     const[toggle,settoggle]=useState(false)
@@ -117,6 +117,8 @@ export default function GeneralInfo() {
   <option value="other">Other</option>
 </select>
 </div>
+
+
 
 
 
