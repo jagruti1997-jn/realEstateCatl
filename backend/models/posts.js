@@ -17,7 +17,7 @@ const postSchema = new Schema({
 
     Name:{type:String},Mobile:{type:Number},PostedBy:{type:String},SaleType:{type:String},
     FeaturedPackage:{type:String},PPDPackage:{type:String},
-  
+
     Email:{type:String},City:{type:String},Area:{type:String},Pincode:{type:String},Address:{type:String},
     Landmark:{type:String},Latitude:{type:String},Longitude:{type:String},
     user:{type:Schema.Types.ObjectId,ref:"User"}},{timestamps:true})

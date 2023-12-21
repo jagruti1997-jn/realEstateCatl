@@ -8,7 +8,7 @@ import NavSidebar from "../components/NavSidebar";
 
 const NewPage=()=>{
    const navigate=useNavigate()
-    const{people,token,postsID}=useParams()
+    const{people,token}=useParams()
    localStorage.setItem('token',token)
 
     useEffect(()=>{
@@ -33,9 +33,9 @@ const NewPage=()=>{
  <nav className='navigationbar' >
 <ul >
     <li><NavLink to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`}>basic Info</NavLink> </li>
-    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`}>Property Details</NavLink></li>
-    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/generalInfo`}>General Info</NavLink></li>
-    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/locationinfo`}>Location Info</NavLink></li>
+    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/propertyDetails`}>Property Details</NavLink></li>
+    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/generalInfo`}>General Info</NavLink></li>
+    <li><NavLink  to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/locationinfo`}>Location Info</NavLink></li>
     
 </ul>
 </nav>

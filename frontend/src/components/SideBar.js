@@ -20,10 +20,11 @@ const SideBar=({children})=>{
     const navigate=useNavigate();
     const location = useLocation();
     const ID=location.state
+    console.log(ID)
 
 
     
-    const [query, setQuery] =useState('');
+    const [query, setQuery] =useState("");
    
    
 
@@ -46,8 +47,8 @@ const logoutHandle=()=>{
  
 
 useEffect(() => {
-
  fetch("http://localhost:8000/posts/", {
+
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -59,7 +60,6 @@ useEffect(() => {
 
     }
 , [])
-    
 },[])
     return (
         <div className="container1">
@@ -79,7 +79,7 @@ useEffect(() => {
             
             <div className="id2">
                 <div>
-            <input type="text" placeholder="Search PPD ID"   onChange={(e)=>setQuery(e.target.value)} name="search" className="search"></input>
+            <input type="text" placeholder="Search PPD ID"   onChange={(e)=>setQuery(e.target.value)} name="search" className="search"/>
            <button ><i className="pi pi-search"/></button>
            </div>
             <button className="Addpropertybutton" >
@@ -91,6 +91,7 @@ useEffect(() => {
               </div>
              
               <h4>Property details :-</h4>
+
         <table  >
                <thead>
                    <tr>

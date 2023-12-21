@@ -16,7 +16,6 @@ export default function BasicInfo() {
      PropertyAge:"select Property Age",
      PropertyApproved:"select Property Approved",
      BankLoan:"select Bank Loan",
-    //  Image:"select image"
 
     })
     const [data, setData] = useState("")
@@ -24,17 +23,6 @@ export default function BasicInfo() {
     const submitData = (e) => {
       e.preventDefault()
      console.log(form)
-//       const formData=new FormData()
-      
-//       formData.append("Name",form.PropertyType)
-//       formData.append("Negotable",form.Negotable)
-//       formData.append("Ownership",form.Ownership)
-//       formData.append("PropertyAge",form.PropertyAge)
-//       formData.append("PropertyApproved",form.PropertyApproved)
-//       formData.append("BankLoan",form.BankLoan)
-//       formData.append("Image",form.Image)
-// console.log(formData)
-
     fetch(`http://localhost:8000/posts/`, {
         method: "POST",
         body: JSON.stringify(form),
@@ -53,12 +41,13 @@ export default function BasicInfo() {
         localStorage.setItem('jsonwebtoken',`test ${token}`)
         const postsID=data.postsId
         localStorage.setItem('postsID',`${postsID}`)
-        console.log(people,token,postsID)
+        console.log(people,token)
+        console.log(postsID)
 
         if(data.status==="success"){
           alert( JSON.stringify(form))
 
-          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/propertyDetails`,{state: postsID})
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/propertyDetails`,{state: postsID})
         }else{
           alert("data is not gone into database")
 

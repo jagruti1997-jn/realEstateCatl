@@ -60,7 +60,7 @@ setdata(res)
             alert("logged in successful")
             localStorage.setItem('jsonwebtoken',`test ${token}`)
           
-            navigateTo(`/home/${encodeURIComponent(res.people)}/${encodeURIComponent(token)}`)
+            navigateTo(`/home/${encodeURIComponent(res.people)}/${encodeURIComponent(token)}`,{state:token})
         }else{
            
             

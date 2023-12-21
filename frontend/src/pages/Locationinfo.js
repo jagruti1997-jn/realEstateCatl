@@ -4,7 +4,9 @@ export default function Locationinfo() {
   let navigateTo=useNavigate();
   const location = useLocation();
   const ID=location.state
-  const {people,token,postsID}=useParams()
+  console.log(ID)
+  const {people,token}=useParams()
+  console.log(people,token)
   const [form, setForm] = useState({
     City: "Hyderabad",
     Area:"Ap" ,
@@ -14,9 +16,6 @@ export default function Locationinfo() {
     const[toggle,settoggle]=useState(false)
     const submitData = (e) => {
       e.preventDefault()
-      localStorage.getItem('postsID',`${postsID}`)
-      console.log(people)
-      console.log(ID)
     fetch(`http://localhost:8000/posts/${ID}`, {
         method: "PUT",
         body: JSON.stringify(form),
@@ -32,15 +31,12 @@ export default function Locationinfo() {
       
         localStorage.setItem('jsonwebtoken',`test ${token}`)
         if(data.status==="success"){
-          const postsID=data.postsId
-          console.log(form)
-
           alert( JSON.stringify(form))
-          navigateTo(`/home/${encodeURIComponent(people)}/${encodeURIComponent(token)}`,{state: postsID})
+          navigateTo(`/home/${encodeURIComponent(people)}/${encodeURIComponent(token)}`,{state: ID})
 
           
         }else{
-          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${encodeURIComponent(postsID)}/generalinfo`,{state: ID})
+          navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/generalinfo`,{state: ID})
 
         }
 })
