@@ -7,24 +7,39 @@ export default function GeneralInfo() {
   console.log(ID)
   const {people,token}=useParams()
   console.log(people,token)
+  const [response, setResponse] = useState(null);
+
   const [form, setForm] = useState({
     Name: "Owner",
+    Mobile:"",
     PostedBy:"amulya" ,
     SaleType:"1",
     FeaturedPackage:"house",
-    PPDPackage:"1"
-   
+    PPDPackage:"1",
+    image:null
+    
     })
     const [data, setData] = useState("")
     const[toggle,settoggle]=useState(false)
-    const submitData = (e) => {
+   
+    const submitData = async(e) => {
       e.preventDefault()
-    fetch(`http://localhost:8000/posts/${ID}`, {
+      try {
+        const formData = new FormData();
+        formData.append('Name', form.Name);
+        formData.append('Mobile', form.Mobile);
+        formData.append('PostedBy', form.PostedBy);
+        formData.append('SaleType', form.SaleType);
+        formData.append('FeaturedPackage', form.FeaturedPackage);
+        formData.append('PPDPackage', form.PPDPackage);
+        formData.append('image', form.image);
+
+        const response = await fetch(`http://localhost:8000/posts/${ID}/img`, {
         method: "PUT",
-        body: JSON.stringify(form),
+        body: formData,
         headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
+            // "Content-Type": "application/json",
+            // "Accept": "application/json",
             "Authorization":`test ${token}`
         }
     }).then((res) => res.json()).then(
@@ -41,12 +56,16 @@ export default function GeneralInfo() {
           navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/propertyDetails`,{state: ID})
 
         }
-})
-  } 
+}) } catch (error) {
+  console.error('Error during file upload:', error);
+ // setResponse(null); // Clear any previous response
+}
+}
+  
   return (
     <div className='container'>
       
-        <form onSubmit={submitData} enctype='multipart/form-data'>
+        <form onSubmit={submitData}>
           <div className='content'>
             <div className='input-box'>
               <label for="Name" className='details'>Name</label>
@@ -112,17 +131,19 @@ export default function GeneralInfo() {
   <option value="other">Other</option>
 </select>
 </div>
+
 <div>
-  <input type='file' name='image' accept='image/*' onChange={(e)=>setForm({...form,image:e.target.files[0]})}></input>
-</div>
-
-
+<input type='file' name='image' 
+  accept="image/*"   onChange={(e)=>setForm({...form,image:e.target.files[0]})}></input></div>
 
 
 </div>
 <div className='button1'> 
-   <button>Previous</button>
-    <button> Save&Coninue</button>  
+<button>
+            <Link to={`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/propertyDetails`}>Previous
+           </Link>
+            </button>
+    <button > Save&Coninue</button>  
      </div>
  
 </form>
