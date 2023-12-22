@@ -23,6 +23,8 @@ export default function GeneralInfo() {
     const[toggle,settoggle]=useState(false)
    
     const submitData = async(e) => {
+      console.log(form)
+
       e.preventDefault()
       try {
         const formData = new FormData();
