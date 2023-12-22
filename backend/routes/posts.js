@@ -1,17 +1,20 @@
 const express = require("express");
 const Post = require("../models/posts")
+const path=require("path");
 const router = express.Router()
 const cors=require("cors")
 router.use(cors());
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
+router.use(express.static(path.join(__dirname, '../frontend/build',"images")));
+// router.use(express.static(path.join(__dirname, 'public')));
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Specify your upload directory
+    cb(null, '../frontend/src/images/'); // Specify your upload directory
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
+    cb(null, file.originalname);
   },
 });
 const upload = multer({ storage: storage 
@@ -55,11 +58,7 @@ router.get("/:id", async (req, res) => {
 })
 
 router.post("/" ,async (req, res) => {
-    // console.log(req.file)
-    // if (!req.file) {
-    //     return res.status(400).json({ error: 'No file uploaded' });
-    //   }
-    //   const { originalname, fieldname, size } = req.file;
+  
     const posts = await Post.create({
         PropertyType: req.body.PropertyType,Negotable: req.body.Negotable,Price: req.body.Price,Ownership: req.body.Ownership,
         PropertyAge: req.body.PropertyAge,PropertyApproved: req.body.PropertyApproved,PropertyDescription: req.body.PropertyDescription,
@@ -71,7 +70,7 @@ router.post("/" ,async (req, res) => {
         Name:req.body.Name,Mobile:req.body.Mobile,PostedBy:req.body.PostedBy,SaleType:req.body.SaleType,FeaturedPackage:req.body.FeaturedPackage,
         PPDPackage:req.body.PPDPackage,
         
-        // image: { originalname, fieldname, size },
+     
 
 
         Email:req.body.Email, City:req.body.City,Area:req.body.Area, Pincode:req.body.Pincode,
@@ -83,8 +82,7 @@ router.post("/" ,async (req, res) => {
         posts:posts,
         postsId:posts._id
 
-        // title:posts.title,
-        // image:posts.image
+     
     })
 })
 router.put("/:id" , async (req, res)  => {
@@ -118,21 +116,18 @@ router.put("/:id" , async (req, res)  => {
 })
 
 router.put("/:id/img" ,upload.single("image"), async (req, res)  => {
-    console.log(req.file)
-    console.log(req.file.originalname)
-    if (!req.file) {
-        return res.status(400).json({ error: 'No file uploaded' });
-      }
-      const { originalname, fieldname, size } = req.file;
+ 
+    
+      
     try {
+        const IMAGE = req.file.filename;
+        console.log(IMAGE)
         
         const posts = await Post.updateMany({ _id: req.params.id },
            { $set: {   Name:req.body.Name,Mobile:req.body.Mobile,PostedBy:req.body.PostedBy,
              SaleType:req.body.SaleType,FeaturedPackage:req.body.FeaturedPackage,
              PPDPackage:req.body.PPDPackage, 
-
-           
-            image: { originalname, fieldname, size },runValidators: true }});
+             image:IMAGE,runValidators: true }});
         res.json({
             status: "success",
             posts:posts,

@@ -1,5 +1,4 @@
 import React, { Children, useCallback, useEffect, useState } from "react";
-
 import { RiHome2Line } from "react-icons/ri";
 import { FaRegBell } from "react-icons/fa";
 import { PiDownloadSimpleFill } from "react-icons/pi";
@@ -22,11 +21,11 @@ const SideBar=({children})=>{
     const ID=location.state
     console.log(ID)
 
-
-    
     const [query, setQuery] =useState("");
    
-   
+    useEffect(()=>{
+        getImage()
+      },[]) 
 
 
     
@@ -35,32 +34,25 @@ const logoutHandle=()=>{
     navigate("/")
 }
  
-        
-        
-    
-    const Toggle=()=>setIsOpen(!IsOpen)
- 
-        
-    
-
-
- 
-
-useEffect(() => {
- fetch("http://localhost:8000/posts/", {
-
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization":`test ${token}`
-        }
+ const Toggle=()=>setIsOpen(!IsOpen)
+ const getImage=async()=>{
+    try{
+    const result=await fetch(`http://localhost:8000/posts/`,{
+      method: 'GET',
+      headers: {
+             "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization":`test ${token}`
+      },
     }).then((response) => response.json()).then((value) => {
- setPeopleList(value.posts)
-
-    }
-, [])
-},[])
+   setPeopleList(value.posts)
+        
+      })} catch (error) {
+         console.error('Error during retrieve image:', error);
+        // setResponse(null); // Clear any previous response
+       }
+  }      
+    
     return (
         <div className="container1">
             <NavSidebar/>
@@ -96,6 +88,7 @@ useEffect(() => {
                <thead>
                    <tr>
                        <th>PPD ID</th>
+                       <th>picture</th>
                        <th>Email</th>
                        <th>city</th>
                        <th>Property desc</th>
@@ -110,11 +103,10 @@ useEffect(() => {
                   if(query===""){
                    return val;
                   }else if(val._id.includes(query)){
-                   return val
-                  }
-               }).map(val=> (
-                    <tr>
+                   return val  }
+               }).map(val=> (  <tr>
                        <td >{val._id}</td>
+                       <td style={{width:"100px",height:"80px"}}><img src={require(`../images/${val.image}`)} alt="img" height={"50px"} width={"80px"}/></td>
                      <td>{val.Email}</td>
                      <td>{val.City}</td>
                      <td>{val.PropertyDescription}</td>
@@ -126,12 +118,7 @@ useEffect(() => {
                    </tr>
                ))
                }
-           </table>
-               
-
-
-              
-              
+           </table>     
             <Outlet/>
 
             </div>
