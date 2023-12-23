@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { CiCamera } from "react-icons/ci";
+import "./Image.css"
 import { Link,Outlet,useParams,useNavigate,useLocation} from 'react-router-dom'
 export default function GeneralInfo() {
   let navigateTo=useNavigate();
@@ -134,9 +136,20 @@ export default function GeneralInfo() {
 </select>
 </div>
 
-<div>
+{/* <div>
 <input type='file' name='image' 
-  accept="image/*"   onChange={(e)=>setForm({...form,image:e.target.files[0]})}></input></div>
+  accept="image/*"   onChange={(e)=>setForm({...form,image:e.target.files[0]})}></input></div> */}
+<div style={{display:"inline-block",alignItems:"center"}}>
+
+<div class="file-container">
+    <label class="custom-file-container" for="fileInput"><CiCamera style={{width:"30px",height:"50px",marginTop:"-8px",marginLeft:"5px"}}/></label>
+    <input type="file" name='image' id="fileInput" class="file-input"  accept="image/*"   onChange={(e)=>setForm({...form,image:e.target.files[0]})}></input> 
+    </div> 
+    <div>
+    <label style={{marginLeft:"20px"}}>Add photo</label>
+
+    </div>
+    </div>
 
 
 </div>

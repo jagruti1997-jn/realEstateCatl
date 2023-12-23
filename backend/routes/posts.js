@@ -70,7 +70,7 @@ router.post("/" ,async (req, res) => {
         Name:req.body.Name,Mobile:req.body.Mobile,PostedBy:req.body.PostedBy,SaleType:req.body.SaleType,FeaturedPackage:req.body.FeaturedPackage,
         PPDPackage:req.body.PPDPackage,
         
-     
+            status:"Unsold",
 
 
         Email:req.body.Email, City:req.body.City,Area:req.body.Area, Pincode:req.body.Pincode,

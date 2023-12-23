@@ -88,13 +88,14 @@ const logoutHandle=()=>{
                <thead>
                    <tr>
                        <th>PPD ID</th>
-                       <th>picture</th>
-                       <th>Email</th>
-                       <th>city</th>
-                       <th>Property desc</th>
+                       <th>Image</th>
+                       <th>Property</th>
+                       <th>Contact</th>
                        <th>Area</th>
-                        <th>PPDPackage</th>
-                       <th>Pincode</th>
+                        <th>Views</th>
+                        <th>Status</th>
+
+                       <th>Days Left</th>
                        <th>view</th>
                        <th>edit</th>
                    </tr>
@@ -106,13 +107,13 @@ const logoutHandle=()=>{
                    return val  }
                }).map(val=> (  <tr>
                        <td >{val._id}</td>
-                       <td style={{width:"100px",height:"80px"}}><img src={require(`../images/${val.image}`)} alt="img" height={"50px"} width={"80px"}/></td>
-                     <td>{val.Email}</td>
-                     <td>{val.City}</td>
-                     <td>{val.PropertyDescription}</td>
+                       <td style={{width:"100px",height:"80px"}}><img src={require(`../images/${val.image}`)} alt="img" height={"50px"} width={"60px"}/></td>
+                     <td>{val.PropertyType}</td>
+                     <td>{val.Mobile}</td>
+                     <td>{val.TotalArea}</td>
+                       <td>{val.Lift}</td>
+                       <td>{val.status}</td>
                        <td>{val.PPDPackage}</td>
-                       <td>{val.Area}</td>
-                       <td>{val.Pincode}</td>
                        <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/showPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-eye'></i></button></td>
                        <td><button style={{ backgroundColor: "skyblue" }} onClick={()=>navigate(`/editPage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/${val._id}`,{state: val})}><i className='pi pi-file-edit'></i></button></td>
                    </tr>

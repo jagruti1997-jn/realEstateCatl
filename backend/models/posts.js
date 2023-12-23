@@ -20,6 +20,7 @@ const postSchema = new Schema({
 
 
     image:{type:String},
+    status:{type:String,default:"Unsold", required:true},
 
     Email:{type:String},City:{type:String},Area:{type:String},Pincode:{type:String},Address:{type:String},
     Landmark:{type:String},Latitude:{type:String},Longitude:{type:String},
