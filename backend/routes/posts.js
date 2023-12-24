@@ -116,7 +116,11 @@ router.put("/:id" , async (req, res)  => {
 })
 
 router.put("/:id/img" ,upload.single("image"), async (req, res)  => {
- 
+   // console.log(req.file)
+    // if (!req.file) {
+    //     return res.status(400).json({ error: 'No file uploaded' });
+    //   }
+    //   const { originalname, fieldname, size } = req.file;
     
       
     try {
@@ -214,11 +218,7 @@ router.delete("/:id", async (req, res) => {
 //put for edit
 
 router.put("/editpage/:id", async (req, res)  => {
-    console.log(req.file)
-    if (!req.file) {
-        return res.status(400).json({ error: 'No file uploaded' });
-      }
-      const { originalname, fieldname, size } = req.file;
+  
     try {
         
         const posts = await Post.updateMany({ _id: req.params.id },
@@ -232,8 +232,6 @@ router.put("/editpage/:id", async (req, res)  => {
              , Electricity: req.body.Electricity , Facing: req.body.Facing ,  Name:req.body.Name,Mobile:req.body.Mobile,PostedBy:req.body.PostedBy,
              SaleType:req.body.SaleType,FeaturedPackage:req.body.FeaturedPackage,
              PPDPackage:req.body.PPDPackage, 
-             image: { originalname, fieldname, size },
-
               Email:req.body.Email, City:req.body.City,Area:req.body.Area, Pincode:req.body.Pincode,
              Address:req.body.Address, Landmark:req.body.Landmark,Latitude:req.body.Latitude,Longitude:req.body.Longitude,
              runValidators: true }});
