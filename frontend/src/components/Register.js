@@ -17,7 +17,7 @@ const Register = () => {
     const [inpval,setInpVal]=useState({
         email:"",
         password:"",
-        cpassword:""
+        Cpassword:""
     });
     const setVal= (e)=>{
      const {name,value}=e.target;
@@ -40,8 +40,8 @@ const Register = () => {
         if(!values.password){
          errors.password="password is required"
         }
-        if(!values.cpassword){
-            errors.cpassword="conform password is required";
+        if(!values.Cpassword){
+            errors.Cpassword="conform password is required";
            }
         return errors;
         }
@@ -60,7 +60,7 @@ const handleRegister=(e)=>{
             "Content-Type": "application/json",
             "Accept": "application/json"
         }
-    }).then((data) => data.json()).then((res) => alert(JSON.stringify(res)))
+    }).then((data) => data.json()).then((res) => alert("register succesful"))
 }
  return(
 <>
@@ -94,11 +94,11 @@ const handleRegister=(e)=>{
             <div className='two'>
             <input type={!passShow ?'password':"text"} value={inpval.Cpassword} onChange={setVal}  name="Cpassword" id='Cpassword' placeholder='Conform Password'></input>
             <span className='showpass' onClick={()=>setPassShow(!passShow)}>
-                {!passShow ? <i className='pi pi-eye'></i>:<i className='pi pi-eye'></i>}
+                {!passShow ? <i className='pi pi-eye'></i>:<i className='pi pi-eye-slash'></i>}
             </span>
             </div>
             </div>
-            <p style={{color:"red"}}>{formerror.cpassword}</p>
+            <p style={{color:"red"}}>{formerror.Cpassword}</p>
            <button className='btn' onSubmit={handleRegister}>Sign up</button>.         
            <p><NavLink to='/'>Sign in</NavLink></p>
            
