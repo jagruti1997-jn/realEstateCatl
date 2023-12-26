@@ -6,12 +6,13 @@ const cors=require("cors")
 router.use(cors());
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
-router.use(express.static(path.join(__dirname, '../frontend/build',"images")));
+// router.use(express.static(path.join(__dirname, '../frontend/src',"images")));
+router.use(express.static(path.join(__dirname, 'public')));
 // router.use(express.static(path.join(__dirname, 'public')));
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../frontend/src/images/'); // Specify your upload directory
+    cb(null, '../frontend/public/images/'); // Specify your upload directory
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);

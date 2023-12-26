@@ -4,7 +4,7 @@ const mongoose=require("mongoose")
 const bcrypt = require("bcrypt")
 
 const users=require("../models/userSchema")
-mongoose.connect("mongodb://localhost/Authusers")
+mongoose.connect("mongodb+srv://amulya:amulya@cluster0.jdt1zmi.mongodb.net/realestatecatalog?retryWrites=true&w=majority")
 
 router.post("/register",async (req, res) => {
     try {
