@@ -123,7 +123,7 @@ export default function Locationinfo() {
       </div >
        
         <div className='button1'>
-        <button>Previous</button>
+        <button onClick={()=>navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}/generalinfo`)}>Previous</button>
         <button style={{color:'whitesmoke'}}>Add Property</button>
 </div>
  

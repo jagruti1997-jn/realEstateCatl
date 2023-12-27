@@ -107,7 +107,7 @@ const logoutHandle=()=>{
                    return val  }
                }).map(val=> (  <tr>
                        <td >{val._id}</td>
-                       <td style={{width:"100px",height:"80px"}}><img src={require(`../images/${val.image}`)} alt="img" height={"50px"} width={"60px"}/></td>
+                       <td style={{width:"100px",height:"80px"}}><img src={`/images/${val.image}`} alt="img" height={"50px"} width={"60px"}/></td>
                      <td>{val.PropertyType}</td>
                      <td>{val.Mobile}</td>
                      <td>{val.TotalArea}</td>

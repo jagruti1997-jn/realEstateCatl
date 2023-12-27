@@ -208,7 +208,7 @@ export default function PropertyDetails() {
         </div>
         <div className='button1'>
   
-  <button>Previous</button>
+  <button  onClick={()=>navigateTo(`/newpage/${encodeURIComponent(people)}/${encodeURIComponent(token)}`)}>Previous</button>
   <button>Save&Coninue</button>
   </div>
 </form>
